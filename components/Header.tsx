@@ -31,12 +31,12 @@ const Header = () => {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md"
+        className="fixed left-0 right-0 top-0 z-50 bg-white shadow-md"
         // initial={{ y: -100 }}
         // animate={{ y: isHidden ? -100 : 0 }}
         // transition={{ duration: 0.2 }}
       >
-        <div className="container mx-auto py-4 px-8 flex justify-between items-center">
+        <div className="container mx-auto flex items-center justify-between px-8 py-4">
           <div className="flex items-center">
             <h1 className="text-xl font-bold text-gray-800">My Website</h1>
           </div>

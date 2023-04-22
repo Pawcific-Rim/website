@@ -16,12 +16,12 @@ const Banner = () => {
         <img
           src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
           alt="Space"
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="absolute left-0 top-0 h-full w-full object-cover"
         />
         <motion.img
           src="https://static.vecteezy.com/system/resources/previews/009/394/204/original/rocket-spaceship-clipart-design-illustration-free-png.png"
           alt="Ships"
-          className="absolute top-1/2 left-1/2 w-[120px] h-auto object-cover"
+          className="absolute left-1/2 top-1/2 h-auto w-[120px] object-cover"
           style={{
             opacity: shipsOpacity,
             scale: shipsScale,
@@ -29,18 +29,18 @@ const Banner = () => {
             translateY: '-50%',
           }}
         />
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
-        <div className="container mx-auto h-full flex flex-col justify-center items-center">
-          <h1 className="text-white text-4xl font-bold mb-4">
+        <div className="absolute left-0 top-0 h-full w-full bg-black opacity-50"></div>
+        <div className="container mx-auto flex h-full flex-col items-center justify-center">
+          <h1 className="mb-4 text-4xl font-bold text-white">
             Welcome to My Website
           </h1>
-          <p className="text-white text-lg mb-8">
+          <p className="mb-8 text-lg text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed
             elit a tellus tristique commodo.
           </p>
           <a
             href="#"
-            className="bg-white text-gray-800 hover:bg-gray-800 hover:text-white px-6 py-3 rounded-full font-bold"
+            className="rounded-full bg-white px-6 py-3 font-bold text-gray-800 hover:bg-gray-800 hover:text-white"
           >
             Learn More
           </a>

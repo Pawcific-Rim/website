@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["next", "prettier"],
+  extends: ['next', 'prettier'],
   rules: {
     'no-console': 'off',
     'no-bitwise': 'off',
@@ -26,5 +26,5 @@ module.exports = {
         ],
       },
     ],
-  }
+  },
 }
