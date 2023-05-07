@@ -16,8 +16,10 @@ export default function Home() {
 
       <main className="overflow-hidden">
         <Header />
-        <Banner />
-        <Features />
+        <div className="isolate">
+          <Banner />
+          <Features />
+        </div>
         <Footer />
       </main>
     </>
