@@ -1,8 +1,11 @@
 import Head from 'next/head'
 
 import Header from '@/components/Header'
-import Banner from '@/components/Banner'
-import Features from '@/components/Features'
+import IntroBanner from '@/components/IntroBanner'
+import IntroAnimate from '@/components/IntroAnimate'
+import GameModes from '@/components/GameModes'
+import Heroes from '@/components/Heroes'
+import News from '@/components/News'
 import Footer from '@/components/Footer'
 
 export default function Home() {
@@ -16,10 +19,11 @@ export default function Home() {
 
       <main className="overflow-hidden">
         <Header />
-        <div className="isolate">
-          <Banner />
-          <Features />
-        </div>
+        <IntroBanner />
+        <IntroAnimate />
+        <GameModes />
+        <Heroes />
+        <News />
         <Footer />
       </main>
     </>
