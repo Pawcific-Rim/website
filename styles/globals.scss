@@ -66,3 +66,13 @@ a {
     pointer-events: none;
   }
 }
+
+.intro-title p {
+  background: linear-gradient(180deg, #FFFFFF 50%, #B3DFFD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  filter: drop-shadow(0px 16px 32px #A064E0) drop-shadow(3px 1px 0px #000000);
+  user-select: none;
+}

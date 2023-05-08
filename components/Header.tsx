@@ -114,7 +114,7 @@ const Header = () => {
             ))}
           </nav>
           <button className="hidden rounded-xl bg-gradient-to-b from-[#FF7E40] to-[#FFEB37] p-1 shadow-md hover:shadow-2xl lg:block">
-            <div className="back flex h-full w-full items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] px-6 py-2 font-bold uppercase">
+            <div className="back flex h-full w-full items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] px-6 py-2 font-bold uppercase text-black">
               Play Game
             </div>
           </button>
@@ -143,7 +143,7 @@ const Header = () => {
                 </Link>
               ))}
               <button className="rounded-xl bg-gradient-to-b from-[#FF7E40] to-[#FFEB37] p-1 shadow-md hover:shadow-2xl">
-                <div className="back flex h-full w-full items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] px-6 py-2 font-bold uppercase">
+                <div className="back flex h-full w-full items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] px-6 py-2 font-bold uppercase text-black">
                   Play Game
                 </div>
               </button>
@@ -151,7 +151,6 @@ const Header = () => {
           </div>
         )}
       </header>
-      <div className="h-[72px] bg-[#A064E0]" />
     </>
   )
 }
