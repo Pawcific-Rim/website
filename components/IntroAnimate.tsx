@@ -40,7 +40,7 @@ const IntroAnimate = () => {
           }}
         />
       </picture>
-      <div className="container absolute inset-0 mx-auto mt-[72px] px-6">
+      <div className="container absolute inset-0 mx-auto mt-[96px] px-6 sm:mt-[120px]">
         <img
           src="/animate-intro/animal1.png"
           alt="Char main"

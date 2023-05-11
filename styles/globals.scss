@@ -144,3 +144,26 @@ a {
     }
   }
 }
+
+.slide-active {
+  border-color: #96FFFF;
+  border-radius: 14px;
+  box-shadow: 0px 0px 16px 0px #96FFFF;
+
+  @include lg {
+    border-radius: 24px;
+  }
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+}
+
+.mode-title {
+  filter: drop-shadow(3px 1px 0px #000000) drop-shadow(0px 0px 24px #A532EC);
+
+  @include sm {
+    filter: drop-shadow(3px 1px 0px #000000) drop-shadow(0px 0px 24px #96FFFF);
+  }
+}
