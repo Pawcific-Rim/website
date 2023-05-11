@@ -1,11 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
+import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import Button from '@/components/Button'
 
+const SOCIALS_ICON_SIZE = 72
+
 const IntroBanner = () => {
+  const [showSocials, setShowSocials] = useState(false)
+
+  const toggleSocials = () => {
+    setShowSocials(!showSocials)
+  }
+
   return (
-    <section className="relative min-h-screen overflow-hidden lg:h-screen">
+    <section className="relative min-h-[812px] overflow-hidden lg:h-screen">
       <picture>
         <source media="(max-width: 640px)" srcSet="/intro/sp.png" />
         <source media="(max-width: 1024px)" srcSet="/intro/ipad.png" />
@@ -29,7 +39,7 @@ const IntroBanner = () => {
             <p className="text-right">Furry Forces</p>
           </h1>
           <div className="relative isolate mb-6">
-            <p className="mx-0 text-center text-base capitalize !leading-8 sm:mx-[100px] sm:text-xl">
+            <p className="mx-0 text-center text-base capitalize !leading-8 text-white sm:mx-[100px] sm:text-xl">
               Save the universe from kaizu threat!
             </p>
             <img
@@ -49,6 +59,56 @@ const IntroBanner = () => {
             </p>
           </Button>
         </div>
+      </div>
+      <div className="absolute bottom-16 left-0 overflow-hidden rounded-r-xl border-2 border-l-0 border-[#A169EB] outline outline-4 outline-offset-0 outline-[#5B5183]">
+        {showSocials ? (
+          <div
+            onClick={toggleSocials}
+            className="flex items-center space-x-3 bg-[#414995]"
+          >
+            <Link href="#" className="ml-12 rounded-full bg-transparent">
+              <Image
+                alt="Telegram"
+                src="/socials/telegram.png"
+                width={SOCIALS_ICON_SIZE}
+                height={SOCIALS_ICON_SIZE}
+              />
+            </Link>
+            <Link href="#" className="rounded-full bg-transparent">
+              <Image
+                alt="Twitter"
+                src="/socials/twitter.png"
+                width={SOCIALS_ICON_SIZE}
+                height={SOCIALS_ICON_SIZE}
+              />
+            </Link>
+            <Link href="#" className="rounded-full bg-transparent">
+              <Image
+                alt="Discord"
+                src="/socials/discord.png"
+                width={SOCIALS_ICON_SIZE}
+                height={SOCIALS_ICON_SIZE}
+              />
+            </Link>
+            <Link href="#" className="rounded-full bg-transparent">
+              <Image
+                alt="Youtube"
+                src="/socials/youtube.png"
+                width={SOCIALS_ICON_SIZE}
+                height={SOCIALS_ICON_SIZE}
+              />
+            </Link>
+            <img
+              src="/socials/toggle-right.png"
+              alt="Toggle"
+              className="!ml-[28px]"
+            />
+          </div>
+        ) : (
+          <div onClick={toggleSocials} className="w-[100px] bg-[#414995]">
+            <img src="/socials/toggle-left.png" alt="Toggle" className="" />
+          </div>
+        )}
       </div>
     </section>
   )

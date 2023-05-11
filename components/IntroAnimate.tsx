@@ -1,51 +1,84 @@
 /* eslint-disable @next/next/no-img-element */
+import React from 'react'
 import { motion, useTransform, useScroll } from 'framer-motion'
+import { useWindowSize } from 'usehooks-ts'
+import Button from '@/components/Button'
 
 const IntroAnimate = () => {
   const { scrollYProgress } = useScroll()
-  const spaceScale = useTransform(scrollYProgress, [0, 1], [1, 1.7])
-  const shipsOpacity = useTransform(scrollYProgress, [0, 0.4, 0.8], [0, 1, 0])
-  const shipsScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 0.8, 1])
+  const { width } = useWindowSize()
+  const characterScale = width / 1920
+  const bgZoom = useTransform(scrollYProgress, [0, 1], [2, 1])
 
   return (
-    <section className="relative h-screen overflow-hidden">
-      <motion.div
-        className="relative h-screen overflow-hidden"
-        style={{ scale: spaceScale, originX: 'center', originY: 'center' }}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
-          alt="Space"
-          className="absolute left-0 top-0 h-full w-full object-cover"
-        />
+    <section
+      className="animate relative min-h-[812px] overflow-hidden lg:min-h-screen"
+      style={
+        {
+          '--character-scale': characterScale,
+        } as React.CSSProperties
+      }
+    >
+      <picture>
+        <source media="(max-width: 640px)" srcSet="/animate-intro/pc.png" />
+        <source media="(max-width: 1024px)" srcSet="/animate-intro/pc.png" />
+        <source srcSet="/animate-intro/pc.png" />
         <motion.img
-          src="https://static.vecteezy.com/system/resources/previews/009/394/204/original/rocket-spaceship-clipart-design-illustration-free-png.png"
-          alt="Ships"
-          className="absolute left-1/2 top-1/2 h-auto w-[120px] object-cover"
+          src="/animate-intro/pc.png"
+          alt="Animate background image"
           style={{
-            opacity: shipsOpacity,
-            scale: shipsScale,
-            translateX: '-50%',
-            translateY: '-50%',
+            objectFit: 'cover',
+            objectPosition: 'center bottom',
+            maxWidth: 'initial',
+            position: 'absolute',
+            height: '100%',
+            width: '100%',
+            left: 0,
+            top: 0,
+            right: 0,
+            bottom: 0,
           }}
         />
-        <div className="absolute left-0 top-0 h-full w-full bg-black opacity-50"></div>
-        <div className="container mx-auto flex h-full flex-col items-center justify-center">
-          <h1 className="mb-4 text-4xl font-bold text-white">
-            Welcome to My Website
-          </h1>
-          <p className="mb-8 text-lg text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed
-            elit a tellus tristique commodo.
-          </p>
-          <a
-            href="#"
-            className="rounded-full bg-white px-6 py-3 font-bold text-gray-800 hover:bg-gray-800 hover:text-white"
-          >
-            Learn More
-          </a>
+      </picture>
+      <div className="container absolute inset-0 mx-auto mt-[72px] px-6">
+        <img
+          src="/animate-intro/animal1.png"
+          alt="Char main"
+          className="charMain"
+        />
+        <img
+          src="/animate-intro/animal2.png"
+          alt="Char 1"
+          className="charLeft"
+        />
+        <img
+          src="/animate-intro/animal3.png"
+          alt="Char left"
+          className="charRight"
+        />
+        <div className="flex flex-col items-center justify-center lg:transform">
+          <h2 className="intro-title-2 mb-6 w-full text-[40px] font-bold capitalize leading-[48px] sm:text-[80px] sm:leading-[88px]">
+            <p className="text-center">Assemble Your</p>
+            <p className="text-center">Mecha Army</p>
+          </h2>
         </div>
-      </motion.div>
+        <div className="absolute bottom-6 left-1/2 w-full -translate-x-1/2 transform px-6 sm:bottom-10 sm:px-10 lg:bottom-[72px] lg:max-w-[768px]">
+          <div className="footer-content-mask container mx-auto overflow-hidden rounded-xl bg-black bg-opacity-50 p-6">
+            <div className="flex flex-col items-center justify-between space-x-0 space-y-6 sm:flex-row sm:space-x-6 sm:space-y-0">
+              <p className="text-center text-white sm:text-left">
+                Assemble over 100 Mecha to your Army, deadly and cute beats who
+                rule this galxy - each posessing powerful abilities and
+                synergies
+              </p>
+              <Button>
+                <p className="px-6 py-2 text-base font-bold uppercase text-black">
+                  Get Them Now
+                </p>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }
