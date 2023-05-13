@@ -89,8 +89,6 @@ export default function Heroes() {
   const isInView = useInView(ref, { margin: '-200px 0px -200px 0px' })
   const controls = useAnimation()
 
-  console.log('isInView', isInView)
-
   useEffect(() => {
     if (isInView) {
       controls.start('visible')
