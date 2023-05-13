@@ -91,7 +91,7 @@ export default function GameModes() {
   )
 
   return (
-    <section className="relative min-h-screen lg:h-screen">
+    <section className="relative h-auto min-h-screen lg:h-screen">
       <picture>
         {/* <source media="(max-width: 640px)" srcSet="/animate-intro/pc.png" /> */}
         {/* <source media="(max-width: 1024px)" srcSet="/animate-intro/pc.png" /> */}
@@ -108,8 +108,8 @@ export default function GameModes() {
           priority={true}
         />
       </picture>
-      <div className="container absolute inset-0 isolate mx-auto mb-[96px] mt-[96px] px-6 md:mt-[120px] lg:max-w-[1149px]">
-        <div className="flex h-full w-full flex-col justify-center px-6">
+      <div className="container absolute inset-0 isolate mx-auto mb-[96px] mt-[96px] px-6 md:mt-[120px] lg:max-w-[1440px]">
+        <div className="mx-auto flex h-full w-full flex-col justify-center px-0 sm:px-6 lg:m-auto lg:w-[125vh]">
           <div className="text-center md:hidden">
             <h2 className="mode-title mb-2 text-[40px] font-bold leading-[48px] text-white">
               Survival Mode
