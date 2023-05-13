@@ -17,7 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="overflow-hidden">
+      <main className="snap relative h-screen w-full snap-y snap-mandatory overflow-auto scroll-smooth">
         <Header />
         <IntroBanner />
         <IntroAnimate />

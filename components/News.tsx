@@ -46,7 +46,7 @@ export default function News() {
   })
 
   return (
-    <section className="relative h-auto min-h-screen lg:h-screen">
+    <section className="relative h-auto min-h-screen lg:h-screen lg:snap-start">
       <picture>
         <source srcSet="/news/bg.png" />
         <Image

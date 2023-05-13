@@ -12,7 +12,7 @@ const IntroAnimate = () => {
 
   return (
     <section
-      className="animate relative min-h-[812px] overflow-hidden lg:min-h-screen"
+      className="animate relative min-h-[812px] overflow-hidden lg:min-h-screen lg:snap-start"
       style={
         {
           '--character-scale': characterScale,

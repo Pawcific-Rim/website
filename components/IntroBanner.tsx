@@ -15,7 +15,7 @@ const IntroBanner = () => {
   }
 
   return (
-    <section className="relative min-h-[812px] overflow-hidden lg:h-screen">
+    <section className="relative min-h-[812px] overflow-hidden lg:h-screen lg:snap-start">
       <picture>
         <source media="(max-width: 640px)" srcSet="/intro/sp.png" />
         <source media="(max-width: 1024px)" srcSet="/intro/ipad.png" />

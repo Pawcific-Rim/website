@@ -75,7 +75,7 @@ export default function Heroes() {
   )
 
   return (
-    <section className="relative min-h-screen overflow-hidden lg:h-screen">
+    <section className="relative min-h-screen overflow-hidden lg:h-screen lg:snap-start">
       <picture>
         <source srcSet="/heroes/bg.png" />
         <Image

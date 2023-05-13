@@ -6,7 +6,7 @@ const SOCIALS_ICON_SIZE = 56
 const Footer = () => {
   return (
     <footer
-      className="flex min-h-screen flex-col bg-cover bg-center pt-[72px] lg:h-screen"
+      className="flex min-h-screen flex-col bg-cover bg-center pt-[72px] lg:h-screen lg:snap-start"
       style={{ backgroundImage: "url('/footer/bg.png')" }}
     >
       <div className="container m-auto w-full px-4 py-12">
