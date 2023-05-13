@@ -1,24 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import { motion, useTransform, useScroll } from 'framer-motion'
-import { useWindowSize } from 'usehooks-ts'
 import Button from '@/components/Button'
 
 const IntroAnimate = () => {
   const { scrollYProgress } = useScroll()
-  const { width } = useWindowSize()
-  const characterScale = width / 1920
   const bgZoom = useTransform(scrollYProgress, [0, 1], [2, 1])
 
   return (
-    <section
-      className="animate relative min-h-[812px] overflow-hidden lg:min-h-screen lg:snap-start"
-      style={
-        {
-          '--character-scale': characterScale,
-        } as React.CSSProperties
-      }
-    >
+    <section className="animate relative min-h-[812px] overflow-hidden lg:min-h-screen lg:snap-start">
       <picture>
         <source media="(max-width: 640px)" srcSet="/animate-intro/pc.png" />
         <source media="(max-width: 1024px)" srcSet="/animate-intro/pc.png" />

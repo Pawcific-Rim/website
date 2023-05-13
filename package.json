@@ -22,8 +22,7 @@
     "react-dom": "18.2.0",
     "sass": "^1.62.0",
     "tailwind-merge": "^1.12.0",
-    "typescript": "5.0.4",
-    "usehooks-ts": "^2.9.1"
+    "typescript": "5.0.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
