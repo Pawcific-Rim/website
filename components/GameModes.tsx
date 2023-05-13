@@ -1,13 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { MutableRefObject, useState } from 'react'
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Image from 'next/image'
+import { motion, useInView, useAnimation } from 'framer-motion'
 import {
   useKeenSlider,
   KeenSliderPlugin,
   KeenSliderInstance,
 } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
+
+import { transition } from '@/utils/constant'
 
 function Arrow(props: { left?: boolean; onClick: (e: any) => void }) {
   return (
@@ -57,19 +60,59 @@ function ThumbnailPlugin(
   }
 }
 
+const bannerVariants = {
+  hidden: {
+    y: -300,
+    opacity: 0,
+    transition: { duration: 0.2 },
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ...transition,
+      type: 'spring',
+      damping: 20,
+      duration: 1,
+    },
+  },
+}
+
+const getThumbnailVariants = (index: number) => ({
+  hidden: {
+    opacity: 0,
+    y: (100 * index) / 2 + 100,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.5,
+      duration: index / 3 + 0.5,
+    },
+  },
+})
+
 export default function GameModes() {
-  const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { margin: '0px 0px -400px 0px' })
+  const controls = useAnimation()
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
     loop: true,
-    slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel)
-    },
     created() {
       setLoaded(true)
     },
   })
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start('visible')
+    } else {
+      controls.start('hidden')
+    }
+  }, [controls, isInView])
 
   const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
     {
@@ -91,7 +134,7 @@ export default function GameModes() {
   )
 
   return (
-    <section className="relative h-auto min-h-screen lg:h-screen lg:snap-start">
+    <section className="relative h-auto min-h-screen overflow-hidden lg:h-screen lg:snap-start">
       <picture>
         {/* <source media="(max-width: 640px)" srcSet="/animate-intro/pc.png" /> */}
         {/* <source media="(max-width: 1024px)" srcSet="/animate-intro/pc.png" /> */}
@@ -108,7 +151,10 @@ export default function GameModes() {
           priority={true}
         />
       </picture>
-      <div className="container absolute inset-0 isolate mx-auto mb-[96px] mt-[96px] px-6 md:mt-[120px] lg:max-w-[1440px]">
+      <div
+        ref={ref}
+        className="container absolute inset-0 isolate mx-auto mb-[96px] mt-[96px] px-6 md:mt-[120px] lg:max-w-[1440px]"
+      >
         <div className="mx-auto flex h-full w-full flex-col justify-center px-0 sm:px-6 lg:m-auto lg:w-[125vh]">
           <div className="text-center md:hidden">
             <h2 className="mode-title mb-2 text-[40px] font-bold leading-[48px] text-white">
@@ -118,7 +164,11 @@ export default function GameModes() {
               Minning resource, upgrade a great base to build up your army
             </p>
           </div>
-          <div className="relative">
+          <motion.div
+            variants={bannerVariants}
+            animate={controls}
+            className="relative"
+          >
             <div ref={sliderRef} className="keen-slider">
               <div className="keen-slider__slide">
                 <img src="/mode/banner-1.png" alt="Banner 1" />
@@ -154,21 +204,45 @@ export default function GameModes() {
                 />
               </>
             )}
-          </div>
+          </motion.div>
 
           <div
             ref={thumbnailRef}
-            className="keen-slider thumbnail mt-4 !overflow-visible"
+            className="keen-slider thumbnail mt-4 !overflow-visible sm:-ml-6"
           >
-            <div className="keen-slider__slide cursor-pointer border-2 border-transparent sm:border-4">
-              <img src="/mode/thumb-1.png" alt="Thumb 1" />
-            </div>
-            <div className="keen-slider__slide cursor-pointer border-2 border-transparent sm:border-4">
-              <img src="/mode/thumb-2.png" alt="Thumb 2" />
-            </div>
-            <div className="keen-slider__slide cursor-pointer border-2 border-transparent sm:border-4">
-              <img src="/mode/thumb-3.png" alt="Thumb 3" />
-            </div>
+            <motion.div
+              variants={getThumbnailVariants(0)}
+              animate={controls}
+              className="keen-slider__slide cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
+            >
+              <img
+                src="/mode/thumb-1.png"
+                alt="Thumb 1"
+                className="h-full w-full"
+              />
+            </motion.div>
+            <motion.div
+              variants={getThumbnailVariants(1)}
+              animate={controls}
+              className="keen-slider__slide cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
+            >
+              <img
+                src="/mode/thumb-2.png"
+                alt="Thumb 2"
+                className="h-full w-full"
+              />
+            </motion.div>
+            <motion.div
+              variants={getThumbnailVariants(2)}
+              animate={controls}
+              className="keen-slider__slide cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
+            >
+              <img
+                src="/mode/thumb-3.png"
+                alt="Thumb 3"
+                className="h-full w-full"
+              />
+            </motion.div>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useAnimation } from 'framer-motion'
 
 import Button from '@/components/Button'
 
@@ -41,6 +41,7 @@ const subtitleVariants = {
 const buttonVariants = {
   hidden: {
     opacity: 0,
+    transition: { duration: 0.3 },
   },
   visible: {
     opacity: 1,
@@ -52,12 +53,18 @@ const IntroBanner = () => {
   const [showSocials, setShowSocials] = useState(false)
   const ref = useRef(null)
   const isInView = useInView(ref)
+  const controls = useAnimation()
 
   const toggleSocials = () => setShowSocials(!showSocials)
 
   useEffect(() => {
-    if (!isInView) setShowSocials(false)
-  }, [isInView, setShowSocials])
+    if (isInView) {
+      controls.start('visible')
+    } else {
+      controls.start('hidden')
+      setShowSocials(false)
+    }
+  }, [isInView, setShowSocials, controls])
 
   return (
     <section className="relative min-h-[812px] overflow-hidden lg:h-screen lg:snap-start">
@@ -85,7 +92,7 @@ const IntroBanner = () => {
           <motion.h1
             variants={titleVariants}
             initial="hidden"
-            whileInView="visible"
+            animate={controls}
             className="intro-title mb-6 w-full max-w-[416px] text-[40px] font-bold capitalize leading-[48px] sm:max-w-[720px] sm:text-[80px] sm:leading-[88px]"
           >
             <p className="text-left">Joint The</p>
@@ -94,7 +101,7 @@ const IntroBanner = () => {
           <motion.div
             variants={subtitleVariants}
             initial="hidden"
-            whileInView="visible"
+            animate={controls}
             className="relative isolate mb-6"
           >
             <p className="mx-0 text-center text-base capitalize !leading-8 text-white sm:mx-[100px] sm:text-xl">
@@ -114,7 +121,7 @@ const IntroBanner = () => {
           <motion.div
             variants={buttonVariants}
             initial="hidden"
-            whileInView="visible"
+            animate={controls}
           >
             <Button>
               <p className="px-6 py-4 text-xl font-bold uppercase text-black">
