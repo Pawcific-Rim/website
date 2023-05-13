@@ -208,12 +208,12 @@ export default function GameModes() {
 
           <div
             ref={thumbnailRef}
-            className="keen-slider thumbnail mt-4 !overflow-visible sm:-ml-6"
+            className="keen-slider thumbnail -ml-2 mt-4 !overflow-visible sm:-ml-6"
           >
             <motion.div
               variants={getThumbnailVariants(0)}
               animate={controls}
-              className="keen-slider__slide cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
+              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
             >
               <img
                 src="/mode/thumb-1.png"
@@ -224,7 +224,7 @@ export default function GameModes() {
             <motion.div
               variants={getThumbnailVariants(1)}
               animate={controls}
-              className="keen-slider__slide cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
+              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
             >
               <img
                 src="/mode/thumb-2.png"
@@ -235,7 +235,7 @@ export default function GameModes() {
             <motion.div
               variants={getThumbnailVariants(2)}
               animate={controls}
-              className="keen-slider__slide cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
+              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
             >
               <img
                 src="/mode/thumb-3.png"
