@@ -1,18 +1,71 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion, useAnimation, useInView } from 'framer-motion'
 
 import Button from '@/components/Button'
 
 const SOCIALS_ICON_SIZE = 72
 
+const titleVariants = {
+  hidden: {
+    opacity: 0,
+    y: -300,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.5,
+      duration: 0.5,
+    },
+  },
+}
+
+const subtitleVariants = {
+  hidden: {
+    opacity: 0,
+    x: -300,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: 0.5,
+      duration: 0.5,
+    },
+  },
+}
+
+const buttonVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { delay: 0.5, duration: 1 },
+  },
+}
+
 const IntroBanner = () => {
   const [showSocials, setShowSocials] = useState(false)
+  const ref = useRef(null)
+  const isInView = useInView(ref)
+  const controls = useAnimation()
 
   const toggleSocials = () => {
     setShowSocials(!showSocials)
   }
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start('visible')
+    } else {
+      controls.start('hidden')
+      setShowSocials(false)
+    }
+  }, [controls, isInView, setShowSocials])
 
   return (
     <section className="relative min-h-[812px] overflow-hidden lg:h-screen lg:snap-start">
@@ -33,12 +86,25 @@ const IntroBanner = () => {
         />
       </picture>
       <div className="container absolute inset-0 mx-auto mt-[72px] p-6 sm:pt-16 lg:mx-0">
-        <div className="flex flex-col items-center lg:-translate-x-16 lg:transform">
-          <h1 className="intro-title mb-6 w-full max-w-[416px] text-[40px] font-bold capitalize leading-[48px] sm:max-w-[720px] sm:text-[80px] sm:leading-[88px]">
+        <div
+          ref={ref}
+          className="flex flex-col items-center lg:-translate-x-16 lg:transform"
+        >
+          <motion.h1
+            variants={titleVariants}
+            initial="hidden"
+            animate={controls}
+            className="intro-title mb-6 w-full max-w-[416px] text-[40px] font-bold capitalize leading-[48px] sm:max-w-[720px] sm:text-[80px] sm:leading-[88px]"
+          >
             <p className="text-left">Joint The</p>
             <p className="text-right">Furry Forces</p>
-          </h1>
-          <div className="relative isolate mb-6">
+          </motion.h1>
+          <motion.div
+            variants={subtitleVariants}
+            initial="hidden"
+            animate={controls}
+            className="relative isolate mb-6"
+          >
             <p className="mx-0 text-center text-base capitalize !leading-8 text-white sm:mx-[100px] sm:text-xl">
               Save the universe from kaizu threat!
             </p>
@@ -52,12 +118,18 @@ const IntroBanner = () => {
               alt="Mask 2"
               className="absolute left-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
             />
-          </div>
-          <Button>
-            <p className="px-6 py-4 text-xl font-bold uppercase text-black">
-              Play Now
-            </p>
-          </Button>
+          </motion.div>
+          <motion.div
+            variants={buttonVariants}
+            initial="hidden"
+            animate={controls}
+          >
+            <Button>
+              <p className="px-6 py-4 text-xl font-bold uppercase text-black">
+                Play Now
+              </p>
+            </Button>
+          </motion.div>
         </div>
       </div>
       <div className="absolute bottom-16 left-0 overflow-hidden rounded-r-xl border-2 border-l-0 border-[#A169EB] outline outline-4 outline-offset-0 outline-[#5B5183]">
