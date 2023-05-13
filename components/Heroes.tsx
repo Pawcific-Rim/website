@@ -157,7 +157,7 @@ export default function Heroes() {
             <div className="flex items-center rounded-xl bg-gradient-to-b from-[#C1A6F3] to-[#9778CD] py-4">
               <div className="w-4 sm:hidden" />
               <button
-                className="mr-4 hidden sm:block"
+                className="mr-4 hidden sm:block sm:max-w-[100px]"
                 onClick={(e: any) =>
                   e.stopPropagation() || instanceRef.current?.prev()
                 }

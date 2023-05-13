@@ -55,7 +55,7 @@ const IntroBanner = () => {
           </div>
           <Button>
             <p className="px-6 py-4 text-xl font-bold uppercase text-black">
-              Get Them Now
+              Play Now
             </p>
           </Button>
         </div>

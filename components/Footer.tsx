@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer
       className="flex min-h-screen flex-col bg-cover bg-center pt-[72px] lg:h-screen"
-      style={{ backgroundImage: "url('/footer/pc.png')" }}
+      style={{ backgroundImage: "url('/footer/bg.png')" }}
     >
       <div className="container m-auto w-full px-4 py-12">
         <div className="footer-content-mask rounded-lg bg-black bg-opacity-50 p-6 md:p-16">
