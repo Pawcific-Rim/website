@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, useInView, useAnimation } from 'framer-motion'
+import { motion, useInView, useAnimation, AnimatePresence } from 'framer-motion'
 
 import Button from '@/components/Button'
 
@@ -46,6 +46,15 @@ const buttonVariants = {
   visible: {
     opacity: 1,
     transition: { delay: 0.5, duration: 1 },
+  },
+}
+
+const socialsVariants = {
+  hidden: {
+    width: 0,
+  },
+  visible: {
+    width: '100%',
   },
 }
 
@@ -133,16 +142,23 @@ const IntroBanner = () => {
       </div>
       <div className="absolute bottom-16 left-0 overflow-hidden rounded-r-xl border-2 border-l-0 border-[#A169EB] outline outline-4 outline-offset-0 outline-[#5B5183]">
         {showSocials ? (
-          <div
+          <motion.div
             onClick={toggleSocials}
             className="flex items-center space-x-3 bg-[#414995]"
+            variants={socialsVariants}
+            initial="hidden"
+            animate={showSocials ? 'visible' : 'hidden'}
           >
-            <Link href="#" className="ml-12 rounded-full bg-transparent">
+            <Link
+              href="#"
+              className="ml-4 rounded-full bg-transparent sm:ml-12"
+            >
               <Image
                 alt="Telegram"
                 src="/socials/telegram.png"
                 width={SOCIALS_ICON_SIZE}
                 height={SOCIALS_ICON_SIZE}
+                className="h-[56px] w-[56px] sm:h-[72px] sm:w-[72px]"
               />
             </Link>
             <Link href="#" className="rounded-full bg-transparent">
@@ -151,6 +167,7 @@ const IntroBanner = () => {
                 src="/socials/twitter.png"
                 width={SOCIALS_ICON_SIZE}
                 height={SOCIALS_ICON_SIZE}
+                className="h-[56px] w-[56px] sm:h-[72px] sm:w-[72px]"
               />
             </Link>
             <Link href="#" className="rounded-full bg-transparent">
@@ -159,6 +176,7 @@ const IntroBanner = () => {
                 src="/socials/discord.png"
                 width={SOCIALS_ICON_SIZE}
                 height={SOCIALS_ICON_SIZE}
+                className="h-[56px] w-[56px] sm:h-[72px] sm:w-[72px]"
               />
             </Link>
             <Link href="#" className="rounded-full bg-transparent">
@@ -167,17 +185,25 @@ const IntroBanner = () => {
                 src="/socials/youtube.png"
                 width={SOCIALS_ICON_SIZE}
                 height={SOCIALS_ICON_SIZE}
+                className="h-[56px] w-[56px] sm:h-[72px] sm:w-[72px]"
               />
             </Link>
             <img
               src="/socials/toggle-right.png"
               alt="Toggle"
-              className="!ml-[28px]"
+              className="!ml-[16px] h-[72px] sm:!ml-[28px] sm:h-[96px]"
             />
-          </div>
+          </motion.div>
         ) : (
-          <div onClick={toggleSocials} className="w-[100px] bg-[#414995]">
-            <img src="/socials/toggle-left.png" alt="Toggle" className="" />
+          <div
+            onClick={toggleSocials}
+            className="w-[72px] bg-[#414995] sm:w-[100px]"
+          >
+            <img
+              src="/socials/toggle-left.png"
+              alt="Toggle"
+              className="-ml-1 h-[72px] sm:h-[96px]"
+            />
           </div>
         )}
       </div>
