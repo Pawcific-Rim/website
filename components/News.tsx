@@ -1,49 +1,34 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useAnimation, useInView } from 'framer-motion'
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 
 import { transition } from '@/utils/constant'
 
 const titleVariants = {
-  hidden: {
-    opacity: 0,
-    y: -100,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition,
-  },
+  hidden: { opacity: 0, y: -100 },
+  visible: { opacity: 1, y: 0, transition: { ...transition, delay: 0.2 } },
 }
 
 const leftButtonVariants = {
-  hidden: {
-    opacity: 0,
-    x: -100,
-    y: -100,
-  },
+  hidden: { opacity: 0, x: -100, y: -100 },
   visible: {
     opacity: 1,
     x: 0,
     y: 0,
-    transition,
+    transition: { ...transition, delay: 1.5 },
   },
 }
 
 const rightButtonVariants = {
-  hidden: {
-    opacity: 0,
-    x: 100,
-    y: -100,
-  },
+  hidden: { opacity: 0, x: 100, y: -100 },
   visible: {
     opacity: 1,
     x: 0,
     y: 0,
-    transition,
+    transition: { ...transition, delay: 1.5 },
   },
 }
 
@@ -57,7 +42,7 @@ const getArticleVariants = (index: number) => ({
     y: 0,
     transition: {
       delay: 0.5,
-      duration: index / 3 + 0.5,
+      duration: index / 6 + 0.5,
     },
   },
 })
@@ -67,17 +52,18 @@ const NewsItem = ({
   alt,
   title,
   index,
+  animationController,
 }: {
   src: string
   alt: string
   title: string
   index: number
+  animationController: any
 }) => {
   return (
     <motion.div
       variants={getArticleVariants(index)}
-      initial="hidden"
-      whileInView="visible"
+      animate={animationController}
       className="flex flex-col px-2 md:px-0"
     >
       <img src={src} alt={alt} className="h-auto w-full rounded-lg" />
@@ -88,6 +74,17 @@ const NewsItem = ({
 
 export default function News() {
   const [loaded, setLoaded] = useState(false)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { margin: '-200px 0px -200px 0px' })
+  const controls = useAnimation()
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start('visible')
+    } else {
+      controls.start('hidden')
+    }
+  }, [controls, isInView])
 
   const [thumbnailRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
@@ -126,12 +123,14 @@ export default function News() {
           priority={true}
         />
       </picture>
-      <div className="container absolute inset-0 isolate mx-auto mb-[96px] mt-[96px] px-6 md:mt-[120px] lg:max-w-[1440px]">
+      <div
+        ref={ref}
+        className="container absolute inset-0 isolate mx-auto mb-[96px] mt-[96px] px-6 md:mt-[120px] lg:max-w-[1440px]"
+      >
         <div className="mx-auto flex h-full w-full flex-col justify-center lg:m-auto">
           <motion.h2
             variants={titleVariants}
-            initial="hidden"
-            whileInView="visible"
+            animate={controls}
             className="news-title text-center text-[40px] font-bold capitalize leading-[48px] text-white md:text-[80px] md:leading-[88px]"
           >
             As seen in
@@ -144,8 +143,7 @@ export default function News() {
                 e.stopPropagation() || instanceRef.current?.prev()
               }
               variants={leftButtonVariants}
-              initial="hidden"
-              whileInView="visible"
+              animate={controls}
             >
               <img src="/heroes/arrow-left.png" alt="Arrow left" />
             </motion.button>
@@ -159,6 +157,7 @@ export default function News() {
                   alt="Article 1"
                   title="MAGIC SQUARE X MONIWAR: LISTING ANNOUNCEMENT"
                   index={0}
+                  animationController={controls}
                 />
               </div>
               <div className="keen-slider__slide cursor-pointer">
@@ -167,6 +166,7 @@ export default function News() {
                   alt="Article 2"
                   title="MAGIC SQUARE X MONIWAR: LISTING ANNOUNCEMENT"
                   index={1}
+                  animationController={controls}
                 />
               </div>
               <div className="keen-slider__slide cursor-pointer">
@@ -175,6 +175,7 @@ export default function News() {
                   alt="Article 3"
                   title="MAGIC SQUARE X MONIWAR: LISTING ANNOUNCEMENT"
                   index={2}
+                  animationController={controls}
                 />
               </div>
             </div>
@@ -184,8 +185,7 @@ export default function News() {
                 e.stopPropagation() || instanceRef.current?.next()
               }
               variants={rightButtonVariants}
-              initial="hidden"
-              whileInView="visible"
+              animate={controls}
             >
               <img src="/heroes/arrow-right.png" alt="Arrow right" />
             </motion.button>
@@ -198,8 +198,7 @@ export default function News() {
                   e.stopPropagation() || instanceRef.current?.prev()
                 }
                 variants={leftButtonVariants}
-                initial="hidden"
-                whileInView="visible"
+                animate={controls}
               >
                 <img src="/heroes/arrow-left.png" alt="Arrow left" />
               </motion.button>
@@ -209,8 +208,7 @@ export default function News() {
                   e.stopPropagation() || instanceRef.current?.next()
                 }
                 variants={rightButtonVariants}
-                initial="hidden"
-                whileInView="visible"
+                animate={controls}
               >
                 <img src="/heroes/arrow-right.png" alt="Arrow right" />
               </motion.button>

@@ -155,14 +155,26 @@ export default function GameModes() {
         ref={ref}
         className="container absolute inset-0 isolate mx-auto mb-[96px] mt-[96px] px-6 md:mt-[120px] lg:max-w-[1440px]"
       >
-        <div className="mx-auto flex h-full w-full flex-col justify-center px-0 sm:px-6 lg:m-auto lg:w-[125vh]">
+        <div className="mx-auto flex h-full w-full flex-col justify-center px-0 sm:px-6 lg:m-auto lg:w-[120vh]">
           <div className="text-center md:hidden">
             <h2 className="mode-title mb-2 text-[40px] font-bold leading-[48px] text-white">
               Survival Mode
             </h2>
-            <p className="mb-4 text-base capitalize text-white">
-              Minning resource, upgrade a great base to build up your army
-            </p>
+            <div className="relative isolate mb-4">
+              <p className="text-base capitalize text-white">
+                Minning resource, upgrade a great base to build up your army
+              </p>
+              <img
+                src="/intro/text-mask-l.png"
+                alt="Mask 1"
+                className="absolute right-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
+              />
+              <img
+                src="/intro/text-mask-r.png"
+                alt="Mask 2"
+                className="absolute left-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
+              />
+            </div>
           </div>
           <motion.div
             variants={bannerVariants}
@@ -184,9 +196,21 @@ export default function GameModes() {
               <h2 className="mode-title mb-2 text-[80px] font-bold leading-[88px] text-white">
                 Survival Mode
               </h2>
-              <p className="mb-[40px] text-2xl capitalize text-white">
-                Minning resource, upgrade a great base to build up your army
-              </p>
+              <div className="relative isolate mb-[40px]">
+                <p className="text-2xl capitalize text-white">
+                  Minning resource, upgrade a great base to build up your army
+                </p>
+                <img
+                  src="/intro/text-mask-l.png"
+                  alt="Mask 1"
+                  className="absolute right-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
+                />
+                <img
+                  src="/intro/text-mask-r.png"
+                  alt="Mask 2"
+                  className="absolute left-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
+                />
+              </div>
             </div>
             {loaded && instanceRef.current && (
               <>

@@ -1,23 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
 const SOCIALS_ICON_SIZE = 56
-
-const footerVariants = {
-  hidden: {
-    opacity: 0,
-    y: 100,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      delay: 0.5,
-    },
-  },
-}
 
 const Footer = () => {
   return (
@@ -25,12 +9,7 @@ const Footer = () => {
       className="flex min-h-screen flex-col bg-cover bg-center pt-[72px] lg:h-screen "
       style={{ backgroundImage: "url('/footer/bg.png')" }}
     >
-      <motion.div
-        variants={footerVariants}
-        initial="hidden"
-        whileInView="visible"
-        className="container m-auto w-full px-4 py-12"
-      >
+      <div className="container m-auto w-full px-4 py-12">
         <div className="footer-content-mask rounded-lg bg-black bg-opacity-50 p-6 md:p-16">
           <div className="mb-8 flex flex-col items-start lg:flex-row lg:items-end">
             <div className="mb-4 w-full md:mb-0">
@@ -219,7 +198,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </footer>
   )
 }

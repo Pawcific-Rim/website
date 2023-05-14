@@ -145,13 +145,25 @@ export default function Heroes() {
             >
               Shiba yukata
             </motion.h2>
-            <motion.p
+            <motion.div
               variants={baseGroundVariants}
               animate={controls}
-              className="mb-[40px] text-center text-base capitalize leading-[32px] text-white sm:hidden"
+              className="relative isolate mb-[40px]"
             >
-              The Strongest hero in Galaxy 109
-            </motion.p>
+              <p className=" text-center text-base capitalize leading-[32px] text-white sm:hidden">
+                The Strongest hero in Galaxy 109
+              </p>
+              <img
+                src="/intro/text-mask-l.png"
+                alt="Mask 1"
+                className="absolute right-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
+              />
+              <img
+                src="/intro/text-mask-r.png"
+                alt="Mask 2"
+                className="absolute left-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
+              />
+            </motion.div>
             <motion.div
               variants={mainImageVariants}
               animate={controls}
@@ -207,9 +219,21 @@ export default function Heroes() {
               <h2 className="character-name z-10 mb-2 hidden text-[80px] font-bold capitalize leading-[88px] text-white sm:block">
                 Shiba yukata
               </h2>
-              <p className="relative z-10 mb-[40px] hidden text-2xl capitalize text-white sm:block">
-                The Strongest hero in Galaxy 109
-              </p>
+              <div className="relative isolate mb-[40px]">
+                <p className="relative z-10 hidden text-2xl capitalize text-white sm:block">
+                  The Strongest hero in Galaxy 109
+                </p>
+                <img
+                  src="/intro/text-mask-l.png"
+                  alt="Mask 1"
+                  className="absolute right-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
+                />
+                <img
+                  src="/intro/text-mask-r.png"
+                  alt="Mask 2"
+                  className="absolute left-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
+                />
+              </div>
 
               <img src="/heroes/base.png" alt="base" className="mx-auto" />
             </motion.div>
