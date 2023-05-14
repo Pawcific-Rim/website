@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -100,7 +101,8 @@ const Header = () => {
             href="/"
             className="leading-0 flex items-center gap-2 whitespace-nowrap bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] bg-clip-text font-inter text-2xl font-semibold text-transparent"
           >
-            <h1>LOGO NAME</h1>
+            <img src="/logo_full.png" alt="logo" className="h-auto w-24" />
+            {/* <h1>LOGO NAME</h1> */}
           </Link>
           <nav className="hidden items-center justify-between gap-[52px] lg:flex">
             {links.map(({ href, title }) => (

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -89,7 +90,12 @@ const Footer = () => {
                 href="/"
                 className="leading-0 flex items-center gap-2 whitespace-nowrap bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] bg-clip-text font-inter text-2xl font-semibold text-transparent"
               >
-                <h1>LOGO NAME</h1>
+                <img
+                  src="/logo_full.png"
+                  alt="logo footer"
+                  className="h-auto w-40"
+                />
+                {/* <h1>LOGO NAME</h1> */}
               </Link>
               <span className="mt-8 whitespace-normal text-white">
                 Copyright © 2021 UI LLC. All rights reserved.
