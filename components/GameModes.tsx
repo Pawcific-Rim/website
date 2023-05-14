@@ -134,7 +134,7 @@ export default function GameModes() {
   )
 
   return (
-    <section className="relative h-auto min-h-screen overflow-hidden lg:h-screen lg:snap-start">
+    <section className="relative h-auto min-h-screen overflow-hidden lg:h-screen">
       <picture>
         {/* <source media="(max-width: 640px)" srcSet="/animate-intro/pc.png" /> */}
         {/* <source media="(max-width: 1024px)" srcSet="/animate-intro/pc.png" /> */}

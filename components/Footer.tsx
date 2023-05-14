@@ -22,7 +22,7 @@ const footerVariants = {
 const Footer = () => {
   return (
     <footer
-      className="flex min-h-screen flex-col bg-cover bg-center pt-[72px] lg:h-screen lg:snap-start"
+      className="flex min-h-screen flex-col bg-cover bg-center pt-[72px] lg:h-screen "
       style={{ backgroundImage: "url('/footer/bg.png')" }}
     >
       <motion.div

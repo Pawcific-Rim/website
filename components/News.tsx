@@ -111,7 +111,7 @@ export default function News() {
   })
 
   return (
-    <section className="relative h-auto min-h-screen overflow-hidden lg:h-screen lg:snap-start">
+    <section className="relative h-auto min-h-screen overflow-hidden lg:h-screen">
       <picture>
         <source srcSet="/news/bg.png" />
         <Image

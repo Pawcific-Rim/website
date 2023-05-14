@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import ReactFullpage from '@fullpage/react-fullpage'
 
 import Header from '@/components/Header'
 import IntroBanner from '@/components/IntroBanner'
@@ -17,14 +18,36 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="snap relative h-screen w-full snap-y snap-mandatory overflow-auto scroll-smooth">
+      <main className="relative w-full overflow-hidden">
         <Header />
-        <IntroBanner />
-        <IntroAnimate />
-        <GameModes />
-        <Heroes />
-        <News />
-        <Footer />
+        <ReactFullpage
+          scrollOverflow
+          credits={{ enabled: false }}
+          render={() => {
+            return (
+              <ReactFullpage.Wrapper>
+                <div className="section">
+                  <IntroBanner />
+                </div>
+                <div id="section2" className="section [&>div]:scrollbar-hide">
+                  <IntroAnimate />
+                </div>
+                <div className="section">
+                  <GameModes />
+                </div>
+                <div className="section">
+                  <Heroes />
+                </div>
+                <div className="section">
+                  <News />
+                </div>
+                <div className="section [&>div]:scrollbar-hide">
+                  <Footer />
+                </div>
+              </ReactFullpage.Wrapper>
+            )
+          }}
+        />
       </main>
     </>
   )
