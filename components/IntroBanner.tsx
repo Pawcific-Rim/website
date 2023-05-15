@@ -68,10 +68,8 @@ const IntroBanner = () => {
 
   useEffect(() => {
     if (isInView) {
+      controls.set('hidden')
       controls.start('visible')
-    } else {
-      controls.start('hidden')
-      setShowSocials(false)
     }
   }, [isInView, setShowSocials, controls])
 
@@ -102,7 +100,7 @@ const IntroBanner = () => {
             variants={titleVariants}
             initial="hidden"
             animate={controls}
-            className="intro-title mb-6 w-full max-w-[416px] text-[40px] font-bold capitalize leading-[48px] sm:max-w-[720px] sm:text-[80px] sm:leading-[88px]"
+            className="intro-title mb-6 w-full max-w-[416px] text-[40px] font-bold capitalize leading-[48px] will-change-transform sm:max-w-[720px] sm:text-[80px] sm:leading-[88px]"
           >
             <p className="text-left">Joint The</p>
             <p className="text-right">Furry Forces</p>
@@ -111,7 +109,7 @@ const IntroBanner = () => {
             variants={subtitleVariants}
             initial="hidden"
             animate={controls}
-            className="relative isolate mb-6"
+            className="relative isolate mb-6 will-change-transform"
           >
             <p className="mx-0 text-center text-base capitalize !leading-8 text-white sm:mx-[100px] sm:text-xl">
               Save the universe from kaizu threat!
@@ -144,7 +142,7 @@ const IntroBanner = () => {
         {showSocials ? (
           <motion.div
             onClick={toggleSocials}
-            className="flex items-center space-x-3 bg-[#414995]"
+            className="flex items-center space-x-3 bg-[#414995] will-change-transform"
             variants={socialsVariants}
             initial="hidden"
             animate={showSocials ? 'visible' : 'hidden'}

@@ -71,8 +71,6 @@ const bannerVariants = {
     y: 0,
     transition: {
       ...transition,
-      type: 'spring',
-      damping: 20,
       duration: 1,
     },
   },
@@ -108,9 +106,8 @@ export default function GameModes() {
 
   useEffect(() => {
     if (isInView) {
+      controls.set('hidden')
       controls.start('visible')
-    } else {
-      controls.start('hidden')
     }
   }, [controls, isInView])
 
@@ -179,7 +176,7 @@ export default function GameModes() {
           <motion.div
             variants={bannerVariants}
             animate={controls}
-            className="relative"
+            className="relative will-change-transform"
           >
             <div ref={sliderRef} className="keen-slider">
               <div className="keen-slider__slide">
@@ -237,7 +234,7 @@ export default function GameModes() {
             <motion.div
               variants={getThumbnailVariants(0)}
               animate={controls}
-              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
+              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent will-change-transform sm:ml-6 sm:border-4"
             >
               <img
                 src="/mode/thumb-1.png"
@@ -248,7 +245,7 @@ export default function GameModes() {
             <motion.div
               variants={getThumbnailVariants(1)}
               animate={controls}
-              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
+              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent will-change-transform sm:ml-6 sm:border-4"
             >
               <img
                 src="/mode/thumb-2.png"
@@ -259,7 +256,7 @@ export default function GameModes() {
             <motion.div
               variants={getThumbnailVariants(2)}
               animate={controls}
-              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent sm:ml-6 sm:border-4"
+              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent will-change-transform sm:ml-6 sm:border-4"
             >
               <img
                 src="/mode/thumb-3.png"

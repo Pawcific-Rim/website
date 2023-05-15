@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion'
+import { motion, useAnimation, useInView } from 'framer-motion'
 import {
   useKeenSlider,
   KeenSliderPlugin,
@@ -67,7 +67,7 @@ const mainImageVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { ...transition, type: 'spring', duration: 1 },
+    transition: { ...transition, duration: 1 },
   },
 }
 
@@ -91,9 +91,8 @@ export default function Heroes() {
 
   useEffect(() => {
     if (isInView) {
+      controls.set('hidden')
       controls.start('visible')
-    } else {
-      controls.start('hidden')
     }
   }, [controls, isInView])
 
@@ -141,7 +140,7 @@ export default function Heroes() {
             <motion.h2
               variants={baseGroundVariants}
               animate={controls}
-              className="character-name z-10 mb-2 text-center text-[40px] font-bold capitalize leading-[48px] text-white sm:hidden"
+              className="character-name z-10 mb-2 text-center text-[40px] font-bold capitalize leading-[48px] text-white will-change-transform sm:hidden"
             >
               Shiba yukata
             </motion.h2>
@@ -242,7 +241,7 @@ export default function Heroes() {
           <motion.div
             variants={thumbnailVariants}
             animate={controls}
-            className="heroes-carousel-mask p-1"
+            className="heroes-carousel-mask p-1 will-change-transform"
           >
             {loaded && instanceRef.current && (
               <div className="flex items-center rounded-xl bg-gradient-to-b from-[#C1A6F3] to-[#9778CD] py-4">
@@ -313,7 +312,7 @@ export default function Heroes() {
               <motion.button
                 variants={leftArrowVariants}
                 animate={controls}
-                className="mr-6 w-[48px]"
+                className="mr-6 w-[48px] will-change-transform"
                 onClick={(e: any) =>
                   e.stopPropagation() || instanceRef.current?.prev()
                 }
@@ -323,7 +322,7 @@ export default function Heroes() {
               <motion.button
                 variants={rightArrowVariants}
                 animate={controls}
-                className="ml-6 w-[48px]"
+                className="ml-6 w-[48px] will-change-transform"
                 onClick={(e: any) =>
                   e.stopPropagation() || instanceRef.current?.next()
                 }

@@ -13,58 +13,53 @@ const titleVariants = {
 }
 
 const leftButtonVariants = {
-  hidden: { opacity: 0, x: -100, y: -100 },
+  hidden: { opacity: 0, x: -50, y: -50 },
   visible: {
     opacity: 1,
     x: 0,
     y: 0,
-    transition: { ...transition, delay: 1.5 },
+    transition,
   },
 }
 
 const rightButtonVariants = {
-  hidden: { opacity: 0, x: 100, y: -100 },
+  hidden: { opacity: 0, x: 50, y: -50 },
   visible: {
     opacity: 1,
     x: 0,
     y: 0,
-    transition: { ...transition, delay: 1.5 },
+    transition,
   },
 }
 
-const getArticleVariants = (index: number) => ({
+const articleVariants = {
   hidden: {
     opacity: 0,
-    y: (100 * index) / 2 + 100,
+    y: 100,
   },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      delay: 0.5,
-      duration: index / 6 + 0.5,
-    },
+    transition,
   },
-})
+}
 
 const NewsItem = ({
   src,
   alt,
   title,
-  index,
   animationController,
 }: {
   src: string
   alt: string
   title: string
-  index: number
   animationController: any
 }) => {
   return (
     <motion.div
-      variants={getArticleVariants(index)}
+      variants={articleVariants}
       animate={animationController}
-      className="flex flex-col px-2 md:px-0"
+      className="flex flex-col px-2 will-change-transform md:px-0"
     >
       <img src={src} alt={alt} className="h-auto w-full rounded-lg" />
       <h3 className="mt-4 text-base capitalize text-white">{title}</h3>
@@ -80,9 +75,8 @@ export default function News() {
 
   useEffect(() => {
     if (isInView) {
+      controls.set('hidden')
       controls.start('visible')
-    } else {
-      controls.start('hidden')
     }
   }, [controls, isInView])
 
@@ -131,14 +125,14 @@ export default function News() {
           <motion.h2
             variants={titleVariants}
             animate={controls}
-            className="news-title text-center text-[40px] font-bold capitalize leading-[48px] text-white md:text-[80px] md:leading-[88px]"
+            className="news-title text-center text-[40px] font-bold capitalize leading-[48px] text-white will-change-transform md:text-[80px] md:leading-[88px]"
           >
             As seen in
           </motion.h2>
 
           <div className="flex flex-row items-center justify-center px-8">
             <motion.button
-              className="mr-6 hidden w-[100px] lg:block"
+              className="mr-6 hidden w-[100px] will-change-transform lg:block"
               onClick={(e: any) =>
                 e.stopPropagation() || instanceRef.current?.prev()
               }
@@ -156,7 +150,6 @@ export default function News() {
                   src="/news/article-1.png"
                   alt="Article 1"
                   title="MAGIC SQUARE X MONIWAR: LISTING ANNOUNCEMENT"
-                  index={0}
                   animationController={controls}
                 />
               </div>
@@ -165,7 +158,6 @@ export default function News() {
                   src="/news/article-2.png"
                   alt="Article 2"
                   title="MAGIC SQUARE X MONIWAR: LISTING ANNOUNCEMENT"
-                  index={1}
                   animationController={controls}
                 />
               </div>
@@ -174,13 +166,12 @@ export default function News() {
                   src="/news/article-3.png"
                   alt="Article 3"
                   title="MAGIC SQUARE X MONIWAR: LISTING ANNOUNCEMENT"
-                  index={2}
                   animationController={controls}
                 />
               </div>
             </div>
             <motion.button
-              className="ml-6 hidden w-[100px] lg:block"
+              className="ml-6 hidden w-[100px] will-change-transform lg:block"
               onClick={(e: any) =>
                 e.stopPropagation() || instanceRef.current?.next()
               }
@@ -193,7 +184,7 @@ export default function News() {
           {loaded && instanceRef.current && (
             <div className="mt-5 flex items-center justify-center lg:hidden">
               <motion.button
-                className="mr-6 w-[48px] sm:w-[100px]"
+                className="mr-6 w-[48px] will-change-transform sm:w-[100px]"
                 onClick={(e: any) =>
                   e.stopPropagation() || instanceRef.current?.prev()
                 }
@@ -203,7 +194,7 @@ export default function News() {
                 <img src="/heroes/arrow-left.png" alt="Arrow left" />
               </motion.button>
               <motion.button
-                className="ml-6 w-[48px] sm:w-[100px]"
+                className="ml-6 w-[48px] will-change-transform sm:w-[100px]"
                 onClick={(e: any) =>
                   e.stopPropagation() || instanceRef.current?.next()
                 }

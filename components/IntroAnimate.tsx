@@ -91,7 +91,7 @@ const Banner = () => {
           <motion.img
             src="/animate-intro/animal1.png"
             alt="Char main"
-            className="charMain transition-all"
+            className="charMain transition-all will-change-transform"
             style={{ opacity: characterOpacity }}
           />
           <motion.img
