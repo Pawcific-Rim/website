@@ -264,7 +264,7 @@ export default function Heroes() {
                 </div>
                 <div className="w-4 sm:hidden" />
                 <button
-                  className="hidden pl-4 sm:block"
+                  className="hidden pl-4 sm:block sm:max-w-[100px]"
                   onClick={(e: any) =>
                     e.stopPropagation() || instanceRef.current?.next()
                   }
