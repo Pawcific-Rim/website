@@ -1,27 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  motion,
-  useTransform,
-  motionValue,
-  easeIn,
-  cubicBezier,
-} from 'framer-motion'
+import { motion, useTransform, motionValue, useInView } from 'framer-motion'
+import { twMerge } from 'tailwind-merge'
 import { useEffect, useRef, useState } from 'react'
 
 import Button from '@/components/Button'
 
-const easing = cubicBezier(0, 0.8, 0.5, 0.5)
-
 const Banner = () => {
-  const [maxScrollY, setMaxScrollY] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [prevScrollTop, setPrevScrollTop] = useState(0)
   const elementRef = useRef(null)
+  const isInView = useInView(elementRef, {
+    margin: '-200px 0px -200px 0px',
+  })
 
   useEffect(() => {
     const handleScroll = () => {
       const element = elementRef.current as unknown as HTMLElement
-
       if (!element) return
 
       const { top, height } = element.getBoundingClientRect()
@@ -32,10 +26,16 @@ const Banner = () => {
 
       if (direction === 'down' && top !== prevScrollTop) {
         setScrollProgress(progress)
-        setMaxScrollY(maxScrollTop)
+        const child = element.firstChild as unknown as HTMLElement
+        child.style.transform = `translateY(100vh) scale(${
+          4 - progress * 3
+        }) translateZ(0)`
       } else if (direction === 'up' && progress !== scrollProgress) {
         setScrollProgress(progress)
-        setMaxScrollY(maxScrollTop)
+        const child = element.firstChild as unknown as HTMLElement
+        child.style.transform = `translateY(100vh) scale(${
+          4 - progress * 3
+        }) translateZ(0)`
       }
 
       setPrevScrollTop(top)
@@ -52,39 +52,21 @@ const Banner = () => {
     }
   }, [elementRef, prevScrollTop, scrollProgress])
 
-  const top = useTransform(
-    motionValue(scrollProgress),
-    [0, 1],
-    [0, maxScrollY],
-    {
-      ease: easing,
-    }
-  )
-  const zoom = useTransform(motionValue(scrollProgress), [0, 1], [4, 1], {
-    ease: easing,
-  })
   const titlePosition = useTransform(
     motionValue(scrollProgress),
     [0, 1],
-    [-500, 0],
-    {
-      ease: easeIn,
-    }
+    [-500, 0]
   )
   const characterOpacity = useTransform(
     motionValue(scrollProgress),
     [0, 0.5, 0.8, 1],
-    [0, 0, 1, 1],
-    {
-      ease: easeIn,
-    }
+    [0, 0, 1, 1]
   )
 
   const descriptionPosition = useTransform(
     motionValue(scrollProgress),
     [0, 1],
-    [500, 0],
-    { ease: easing }
+    [500, 0]
   )
 
   return (
@@ -92,15 +74,17 @@ const Banner = () => {
       ref={elementRef}
       className="relative h-[200vh] overflow-hidden bg-gradient-to-b from-[#FFEE36] to-[#FF7A40]"
     >
-      <motion.section
-        className="animate relative h-auto min-h-screen transition-all ease-[cubic-bezier(0,1,1,1)]"
+      <section
+        className={twMerge(
+          'animate h-auto min-h-screen transition-opacity will-change-transform',
+          isInView ? 'pointer-events-none fixed inset-0' : 'relative'
+        )}
         style={{
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center bottom',
           backgroundSize: 'cover',
           backgroundImage: 'url(/animate-intro/pc.png)',
-          scale: zoom,
-          y: top,
+          transform: 'translateY(100vh) scale(4) translateZ(0px)',
         }}
       >
         <div className="container absolute inset-0 mx-auto mt-[96px] px-6 sm:mt-[120px]">
@@ -151,7 +135,7 @@ const Banner = () => {
             </motion.div>
           </div>
         </div>
-      </motion.section>
+      </section>
     </div>
   )
 }
