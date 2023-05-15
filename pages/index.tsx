@@ -26,6 +26,7 @@ export default function Home() {
         <ReactFullpage
           scrollOverflow
           credits={{ enabled: false }}
+          scrollingSpeed={700}
           render={() => {
             return (
               <ReactFullpage.Wrapper>

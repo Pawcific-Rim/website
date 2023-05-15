@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, useInView, useAnimation, AnimatePresence } from 'framer-motion'
 
 import Button from '@/components/Button'
+import { TRANSITION_DELAY } from '@/utils/constant'
 
 const SOCIALS_ICON_SIZE = 72
 
@@ -17,7 +18,6 @@ const titleVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.5,
       duration: 0.5,
     },
   },
@@ -32,7 +32,6 @@ const subtitleVariants = {
     opacity: 1,
     x: 0,
     transition: {
-      delay: 0.5,
       duration: 0.5,
     },
   },
@@ -45,7 +44,7 @@ const buttonVariants = {
   },
   visible: {
     opacity: 1,
-    transition: { delay: 0.5, duration: 1 },
+    transition: { duration: 1 },
   },
 }
 
@@ -68,8 +67,11 @@ const IntroBanner = () => {
 
   useEffect(() => {
     if (isInView) {
+      setTimeout(() => {
+        controls.start('visible')
+      }, TRANSITION_DELAY)
+    } else {
       controls.set('hidden')
-      controls.start('visible')
     }
   }, [isInView, setShowSocials, controls])
 

@@ -5,11 +5,11 @@ import { motion, useAnimation, useInView } from 'framer-motion'
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 
-import { transition } from '@/utils/constant'
+import { transition, TRANSITION_DELAY } from '@/utils/constant'
 
 const titleVariants = {
   hidden: { opacity: 0, y: -100 },
-  visible: { opacity: 1, y: 0, transition: { ...transition, delay: 0.2 } },
+  visible: { opacity: 1, y: 0, transition },
 }
 
 const leftButtonVariants = {
@@ -75,8 +75,11 @@ export default function News() {
 
   useEffect(() => {
     if (isInView) {
+      setTimeout(() => {
+        controls.start('visible')
+      }, TRANSITION_DELAY)
+    } else {
       controls.set('hidden')
-      controls.start('visible')
     }
   }, [controls, isInView])
 

@@ -10,7 +10,7 @@ import {
 } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 
-import { transition } from '@/utils/constant'
+import { TRANSITION_DELAY, transition } from '@/utils/constant'
 
 function Arrow(props: { left?: boolean; onClick: (e: any) => void }) {
   return (
@@ -85,7 +85,6 @@ const getThumbnailVariants = (index: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.5,
       duration: index / 3 + 0.5,
     },
   },
@@ -106,8 +105,11 @@ export default function GameModes() {
 
   useEffect(() => {
     if (isInView) {
+      setTimeout(() => {
+        controls.start('visible')
+      }, TRANSITION_DELAY)
+    } else {
       controls.set('hidden')
-      controls.start('visible')
     }
   }, [controls, isInView])
 

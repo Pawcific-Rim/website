@@ -9,7 +9,7 @@ import {
 } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 
-import { transition } from '@/utils/constant'
+import { TRANSITION_DELAY, transition } from '@/utils/constant'
 
 function ThumbnailPlugin(
   mainRef: MutableRefObject<KeenSliderInstance | null>
@@ -91,8 +91,11 @@ export default function Heroes() {
 
   useEffect(() => {
     if (isInView) {
+      setTimeout(() => {
+        controls.start('visible')
+      }, TRANSITION_DELAY)
+    } else {
       controls.set('hidden')
-      controls.start('visible')
     }
   }, [controls, isInView])
 
