@@ -55,7 +55,7 @@ const Banner = () => {
   const titlePosition = useTransform(
     motionValue(scrollProgress),
     [0, 1],
-    [-500, 0]
+    [-600, 0]
   )
   const characterOpacity = useTransform(
     motionValue(scrollProgress),
@@ -72,11 +72,11 @@ const Banner = () => {
   return (
     <div
       ref={elementRef}
-      className="relative h-[200vh] overflow-hidden bg-gradient-to-b from-[#FFEE36] to-[#FF7A40]"
+      className="relative h-[200vh] overflow-hidden bg-[#FF7A40]"
     >
       <section
         className={twMerge(
-          'animate h-auto min-h-screen will-change-transform',
+          'animate h-auto min-h-screen origin-top will-change-transform',
           isInView ? 'pointer-events-none fixed inset-0' : 'relative'
         )}
         style={{
