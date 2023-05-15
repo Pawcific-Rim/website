@@ -76,7 +76,7 @@ const Banner = () => {
     >
       <section
         className={twMerge(
-          'animate h-auto min-h-screen transition-opacity will-change-transform',
+          'animate h-auto min-h-screen will-change-transform',
           isInView ? 'pointer-events-none fixed inset-0' : 'relative'
         )}
         style={{
@@ -91,25 +91,25 @@ const Banner = () => {
           <motion.img
             src="/animate-intro/animal1.png"
             alt="Char main"
-            className="charMain transition-all will-change-transform"
+            className="charMain will-change-transform"
             style={{ opacity: characterOpacity }}
           />
           <motion.img
             src="/animate-intro/animal2.png"
             alt="Char 1"
-            className="charLeft transition-all"
+            className="charLeft will-change-transform"
             style={{ opacity: characterOpacity }}
           />
           <motion.img
             src="/animate-intro/animal3.png"
             alt="Char left"
-            className="charRight transition-all"
+            className="charRight will-change-transform"
             style={{ opacity: characterOpacity }}
           />
           <div className="flex flex-col items-center justify-center lg:transform">
             <motion.h2
               style={{ y: titlePosition }}
-              className="intro-title-2 mb-6 w-full text-[40px] font-bold capitalize leading-[48px] transition-all sm:text-[80px] sm:leading-[88px]"
+              className="intro-title-2 mb-6 w-full text-[40px] font-bold capitalize leading-[48px] will-change-transform sm:text-[80px] sm:leading-[88px]"
             >
               <p className="text-center">Assemble Your</p>
               <p className="text-center">Mecha Army</p>
@@ -118,7 +118,7 @@ const Banner = () => {
           <div className="absolute bottom-6 left-1/2 mb-6 w-full -translate-x-1/2 transform px-6 sm:bottom-10 sm:mb-0 sm:px-10 lg:bottom-[72px] lg:max-w-[768px]">
             <motion.div
               style={{ y: descriptionPosition }}
-              className="footer-content-mask container mx-auto overflow-hidden rounded-xl bg-black bg-opacity-50 p-6 transition-all"
+              className="footer-content-mask container mx-auto overflow-hidden rounded-xl bg-black bg-opacity-50 p-6 will-change-transform"
             >
               <div className="flex flex-col items-center justify-between space-x-0 space-y-6 sm:flex-row sm:space-x-6 sm:space-y-0">
                 <p className="text-center text-white sm:text-left">

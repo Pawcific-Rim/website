@@ -1,15 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { motion, useAnimation, useInView } from 'framer-motion'
+import { twMerge } from 'tailwind-merge'
+import { useInView } from 'framer-motion'
 import {
   useKeenSlider,
   KeenSliderPlugin,
   KeenSliderInstance,
 } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
-
-import { TRANSITION_DELAY, transition } from '@/utils/constant'
 
 function ThumbnailPlugin(
   mainRef: MutableRefObject<KeenSliderInstance | null>
@@ -47,35 +46,6 @@ function ThumbnailPlugin(
   }
 }
 
-const thumbnailVariants = {
-  hidden: { opacity: 0, y: 100, transition: { duration: 0.2 } },
-  visible: { opacity: 1, y: 0, transition },
-}
-
-const leftArrowVariants = {
-  hidden: { opacity: 0, x: -100, y: -100, transition: { duration: 0.2 } },
-  visible: { opacity: 1, x: 0, y: 0, transition },
-}
-
-const rightArrowVariants = {
-  hidden: { opacity: 0, x: 100, y: -100, transition: { duration: 0.2 } },
-  visible: { opacity: 1, x: 0, y: 0, transition },
-}
-
-const mainImageVariants = {
-  hidden: { opacity: 0, y: -300, transition: { duration: 0.2 } },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { ...transition, duration: 1 },
-  },
-}
-
-const baseGroundVariants = {
-  hidden: { opacity: 0, transition: { duration: 0.2 } },
-  visible: { opacity: 1, transition },
-}
-
 export default function Heroes() {
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
@@ -87,17 +57,6 @@ export default function Heroes() {
   })
   const ref = useRef(null)
   const isInView = useInView(ref, { margin: '-200px 0px -200px 0px' })
-  const controls = useAnimation()
-
-  useEffect(() => {
-    if (isInView) {
-      setTimeout(() => {
-        controls.start('visible')
-      }, TRANSITION_DELAY)
-    } else {
-      controls.set('hidden')
-    }
-  }, [controls, isInView])
 
   const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
     {
@@ -136,21 +95,23 @@ export default function Heroes() {
       </picture>
       <div
         ref={ref}
-        className="container absolute inset-0 isolate mx-auto mb-[96px] mt-[96px] px-6 md:mt-[120px] lg:max-w-[1440px]"
+        className="container absolute inset-0 isolate mx-auto mb-[24px] mt-[96px] px-6 md:mb-[96px] md:mt-[120px] lg:max-w-[1440px]"
       >
         <div className="mx-auto flex h-full w-full flex-col justify-center px-0 sm:px-6 lg:m-auto lg:w-[95vh]">
           <div className="relative pb-[58px] sm:pb-[89px] lg:pb-[69px]">
-            <motion.h2
-              variants={baseGroundVariants}
-              animate={controls}
-              className="character-name z-10 mb-2 text-center text-[40px] font-bold capitalize leading-[48px] text-white will-change-transform sm:hidden"
+            <h2
+              className={twMerge(
+                'animate__animated character-name z-10 mb-2 text-center text-[40px] font-bold capitalize leading-[48px] text-white will-change-transform sm:hidden',
+                isInView && 'animate__fadeIn animate__delay-1s'
+              )}
             >
               Shiba yukata
-            </motion.h2>
-            <motion.div
-              variants={baseGroundVariants}
-              animate={controls}
-              className="relative isolate mb-[40px]"
+            </h2>
+            <div
+              className={twMerge(
+                'animate__animated relative isolate mb-[40px]',
+                isInView && 'animate__fadeIn animate__delay-1s'
+              )}
             >
               <p className=" text-center text-base capitalize leading-[32px] text-white sm:hidden">
                 The Strongest hero in Galaxy 109
@@ -165,12 +126,13 @@ export default function Heroes() {
                 alt="Mask 2"
                 className="absolute left-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
               />
-            </motion.div>
-            <motion.div
-              variants={mainImageVariants}
-              animate={controls}
+            </div>
+            <div
               ref={sliderRef}
-              className="keen-slider"
+              className={twMerge(
+                'keen-slider animate__animated',
+                isInView && 'animate__fadeInDown animate__delay-1s'
+              )}
             >
               <div className="keen-slider__slide">
                 <img
@@ -207,11 +169,12 @@ export default function Heroes() {
                   alt="Character 5"
                 />
               </div>
-            </motion.div>
-            <motion.div
-              variants={baseGroundVariants}
-              animate={controls}
-              className="absolute -bottom-10 w-full px-8 text-center sm:-bottom-20 lg:-bottom-24"
+            </div>
+            <div
+              className={twMerge(
+                'animate__animated absolute -bottom-10 w-full px-8 text-center sm:-bottom-20 lg:-bottom-24',
+                isInView && 'animate__fadeIn animate__delay-1s'
+              )}
             >
               <img
                 src="/heroes/light.png"
@@ -238,13 +201,14 @@ export default function Heroes() {
               </div>
 
               <img src="/heroes/base.png" alt="base" className="mx-auto" />
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div
-            variants={thumbnailVariants}
-            animate={controls}
-            className="heroes-carousel-mask p-1 will-change-transform"
+          <div
+            className={twMerge(
+              'animate__animated heroes-carousel-mask p-1 will-change-transform',
+              isInView && 'animate__fadeInUp animate__delay-1s'
+            )}
           >
             {loaded && instanceRef.current && (
               <div className="flex items-center rounded-xl bg-gradient-to-b from-[#C1A6F3] to-[#9778CD] py-4">
@@ -309,29 +273,31 @@ export default function Heroes() {
                 </button>
               </div>
             )}
-          </motion.div>
+          </div>
           {loaded && instanceRef.current && (
             <div className="mt-5 flex items-center justify-center sm:hidden">
-              <motion.button
-                variants={leftArrowVariants}
-                animate={controls}
-                className="mr-6 w-[48px] will-change-transform"
+              <button
+                className={twMerge(
+                  'animate__animated mr-6 w-[48px] will-change-transform',
+                  isInView && 'animate__fadeInTopLeft animate__delay-1s'
+                )}
                 onClick={(e: any) =>
                   e.stopPropagation() || instanceRef.current?.prev()
                 }
               >
                 <img src="/heroes/arrow-left.png" alt="Arrow left" />
-              </motion.button>
-              <motion.button
-                variants={rightArrowVariants}
-                animate={controls}
-                className="ml-6 w-[48px] will-change-transform"
+              </button>
+              <button
+                className={twMerge(
+                  'animate__animated ml-6 w-[48px] will-change-transform',
+                  isInView && 'animate__fadeInTopRight animate__delay-1s'
+                )}
                 onClick={(e: any) =>
                   e.stopPropagation() || instanceRef.current?.next()
                 }
               >
                 <img src="/heroes/arrow-right.png" alt="Arrow right" />
-              </motion.button>
+              </button>
             </div>
           )}
         </div>

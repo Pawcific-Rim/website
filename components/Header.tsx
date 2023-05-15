@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -44,15 +44,15 @@ const Header = () => {
 
   return (
     <>
-      <motion.header
+      <header
         className={twMerge(
-          'fixed left-0 right-0 top-0 z-10 bg-gradient-to-b from-[#4836A4] to-[#A064E0] px-4 transition-all md:px-6 lg:max-h-[72px] lg:px-0',
+          'fixed left-0 right-0 top-0 z-10 bg-gradient-to-b from-[#4836A4] to-[#A064E0] px-4 md:px-6 lg:max-h-[72px] lg:px-0',
           isMenuOpen && 'h-screen'
         )}
       >
         <div className="flex h-[72px] w-full items-center justify-between py-3 lg:container lg:mx-auto lg:justify-center lg:gap-16">
           <button className="lg:hidden" onClick={toggleMenu}>
-            <motion.svg
+            <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -62,7 +62,7 @@ const Header = () => {
             >
               {!isMenuOpen ? (
                 <>
-                  <motion.rect
+                  <rect
                     x="4"
                     y="17"
                     width="16"
@@ -70,7 +70,7 @@ const Header = () => {
                     rx="1"
                     fill="white"
                   />
-                  <motion.rect
+                  <rect
                     x="4"
                     y="11"
                     width="16"
@@ -78,24 +78,17 @@ const Header = () => {
                     rx="1"
                     fill="white"
                   />
-                  <motion.rect
-                    x="4"
-                    y="5"
-                    width="16"
-                    height="2"
-                    rx="1"
-                    fill="white"
-                  />
+                  <rect x="4" y="5" width="16" height="2" rx="1" fill="white" />
                 </>
               ) : (
-                <motion.path
+                <path
                   fillRule="evenodd"
                   clipRule="evenodd"
                   d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z"
                   fill="white"
                 />
               )}
-            </motion.svg>
+            </svg>
           </button>
           <Link
             href="/"
@@ -138,12 +131,7 @@ const Header = () => {
           onExitComplete={() => null}
         >
           {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="h-screen lg:hidden"
-            >
+            <div className="h-screen lg:hidden">
               <nav className="flex flex-col items-start justify-center gap-12 py-8">
                 {links.map(({ href, title }) => (
                   <Link
@@ -168,10 +156,10 @@ const Header = () => {
                   </div>
                 </button>
               </nav>
-            </motion.div>
+            </div>
           )}
         </AnimatePresence>
-      </motion.header>
+      </header>
     </>
   )
 }

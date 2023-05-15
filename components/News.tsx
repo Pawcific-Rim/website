@@ -1,69 +1,34 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Image from 'next/image'
-import { motion, useAnimation, useInView } from 'framer-motion'
+import { twMerge } from 'tailwind-merge'
+import { useInView } from 'framer-motion'
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
-
-import { transition, TRANSITION_DELAY } from '@/utils/constant'
-
-const titleVariants = {
-  hidden: { opacity: 0, y: -100 },
-  visible: { opacity: 1, y: 0, transition },
-}
-
-const leftButtonVariants = {
-  hidden: { opacity: 0, x: -50, y: -50 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    transition,
-  },
-}
-
-const rightButtonVariants = {
-  hidden: { opacity: 0, x: 50, y: -50 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    transition,
-  },
-}
-
-const articleVariants = {
-  hidden: {
-    opacity: 0,
-    y: 100,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition,
-  },
-}
 
 const NewsItem = ({
   src,
   alt,
   title,
-  animationController,
+  index,
+  isInView,
 }: {
   src: string
   alt: string
   title: string
-  animationController: any
+  index: number
+  isInView: boolean
 }) => {
   return (
-    <motion.div
-      variants={articleVariants}
-      animate={animationController}
-      className="flex flex-col px-2 will-change-transform md:px-0"
+    <div
+      className={twMerge(
+        'animate__animated flex flex-col px-2 will-change-transform md:px-0',
+        isInView && `animate__fadeInUp animate__delay-${index}s`
+      )}
     >
       <img src={src} alt={alt} className="h-auto w-full rounded-lg" />
       <h3 className="mt-4 text-base capitalize text-white">{title}</h3>
-    </motion.div>
+    </div>
   )
 }
 
@@ -71,17 +36,6 @@ export default function News() {
   const [loaded, setLoaded] = useState(false)
   const ref = useRef(null)
   const isInView = useInView(ref, { margin: '-200px 0px -200px 0px' })
-  const controls = useAnimation()
-
-  useEffect(() => {
-    if (isInView) {
-      setTimeout(() => {
-        controls.start('visible')
-      }, TRANSITION_DELAY)
-    } else {
-      controls.set('hidden')
-    }
-  }, [controls, isInView])
 
   const [thumbnailRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
@@ -125,25 +79,27 @@ export default function News() {
         className="container absolute inset-0 isolate mx-auto mb-[96px] mt-[96px] px-6 md:mt-[120px] lg:max-w-[1440px]"
       >
         <div className="mx-auto flex h-full w-full flex-col justify-center lg:m-auto">
-          <motion.h2
-            variants={titleVariants}
-            animate={controls}
-            className="news-title text-center text-[40px] font-bold capitalize leading-[48px] text-white will-change-transform md:text-[80px] md:leading-[88px]"
+          <h2
+            className={twMerge(
+              'news-title animate__animated text-center text-[40px] font-bold capitalize leading-[48px] text-white will-change-transform md:text-[80px] md:leading-[88px]',
+              isInView && 'animate__fadeInDown'
+            )}
           >
             As seen in
-          </motion.h2>
+          </h2>
 
           <div className="flex flex-row items-center justify-center px-8">
-            <motion.button
-              className="mr-6 hidden w-[100px] will-change-transform lg:block"
+            <button
+              className={twMerge(
+                'animate__animated mr-6 hidden w-[100px] will-change-transform lg:block',
+                isInView && 'animate__fadeInTopLeft'
+              )}
               onClick={(e: any) =>
                 e.stopPropagation() || instanceRef.current?.prev()
               }
-              variants={leftButtonVariants}
-              animate={controls}
             >
               <img src="/heroes/arrow-left.png" alt="Arrow left" />
-            </motion.button>
+            </button>
             <div
               ref={thumbnailRef}
               className="keen-slider thumbnail mt-8 !overflow-visible md:mt-16 md:!overflow-hidden"
@@ -153,7 +109,8 @@ export default function News() {
                   src="/news/article-1.png"
                   alt="Article 1"
                   title="MAGIC SQUARE X MONIWAR: LISTING ANNOUNCEMENT"
-                  animationController={controls}
+                  isInView={isInView}
+                  index={0}
                 />
               </div>
               <div className="keen-slider__slide cursor-pointer">
@@ -161,7 +118,8 @@ export default function News() {
                   src="/news/article-2.png"
                   alt="Article 2"
                   title="MAGIC SQUARE X MONIWAR: LISTING ANNOUNCEMENT"
-                  animationController={controls}
+                  isInView={isInView}
+                  index={1}
                 />
               </div>
               <div className="keen-slider__slide cursor-pointer">
@@ -169,43 +127,47 @@ export default function News() {
                   src="/news/article-3.png"
                   alt="Article 3"
                   title="MAGIC SQUARE X MONIWAR: LISTING ANNOUNCEMENT"
-                  animationController={controls}
+                  isInView={isInView}
+                  index={2}
                 />
               </div>
             </div>
-            <motion.button
-              className="ml-6 hidden w-[100px] will-change-transform lg:block"
+            <button
+              className={twMerge(
+                'animate__animated ml-6 hidden w-[100px] will-change-transform lg:block',
+                isInView && 'animate__fadeInTopRight'
+              )}
               onClick={(e: any) =>
                 e.stopPropagation() || instanceRef.current?.next()
               }
-              variants={rightButtonVariants}
-              animate={controls}
             >
               <img src="/heroes/arrow-right.png" alt="Arrow right" />
-            </motion.button>
+            </button>
           </div>
           {loaded && instanceRef.current && (
             <div className="mt-5 flex items-center justify-center lg:hidden">
-              <motion.button
-                className="mr-6 w-[48px] will-change-transform sm:w-[100px]"
+              <button
+                className={twMerge(
+                  'animate__animated mr-6 w-[48px] will-change-transform sm:w-[100px]',
+                  isInView && 'animate__fadeInTopLeft'
+                )}
                 onClick={(e: any) =>
                   e.stopPropagation() || instanceRef.current?.prev()
                 }
-                variants={leftButtonVariants}
-                animate={controls}
               >
                 <img src="/heroes/arrow-left.png" alt="Arrow left" />
-              </motion.button>
-              <motion.button
-                className="ml-6 w-[48px] will-change-transform sm:w-[100px]"
+              </button>
+              <button
+                className={twMerge(
+                  'animate__animated ml-6 w-[48px] will-change-transform sm:w-[100px]',
+                  isInView && 'animate__fadeInTopRight'
+                )}
                 onClick={(e: any) =>
                   e.stopPropagation() || instanceRef.current?.next()
                 }
-                variants={rightButtonVariants}
-                animate={controls}
               >
                 <img src="/heroes/arrow-right.png" alt="Arrow right" />
-              </motion.button>
+              </button>
             </div>
           )}
         </div>

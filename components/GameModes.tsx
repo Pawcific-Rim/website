@@ -2,15 +2,13 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Image from 'next/image'
-import { motion, useInView, useAnimation } from 'framer-motion'
+import { useInView } from 'framer-motion'
 import {
   useKeenSlider,
   KeenSliderPlugin,
   KeenSliderInstance,
 } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
-
-import { TRANSITION_DELAY, transition } from '@/utils/constant'
 
 function Arrow(props: { left?: boolean; onClick: (e: any) => void }) {
   return (
@@ -28,15 +26,6 @@ function ThumbnailPlugin(
   mainRef: MutableRefObject<KeenSliderInstance | null>
 ): KeenSliderPlugin {
   return (slider) => {
-    function removeActive() {
-      slider.slides.forEach((slide) => {
-        slide.classList.remove('slide-active')
-      })
-    }
-    function addActive(idx: number) {
-      slider.slides[idx].classList.add('slide-active')
-    }
-
     function addClickEvents() {
       slider.slides.forEach((slide, idx) => {
         slide.addEventListener('click', () => {
@@ -48,70 +37,30 @@ function ThumbnailPlugin(
     slider.on('created', () => {
       if (!mainRef.current) return
 
-      addActive(slider.track.details.rel)
       addClickEvents()
       mainRef.current.on('animationStarted', (main) => {
-        removeActive()
         const next = main.animator.targetIdx || 0
-        addActive(main.track.absToRel(next))
         slider.moveToIdx(Math.min(slider.track.details.maxIdx, next))
       })
     })
   }
 }
 
-const bannerVariants = {
-  hidden: {
-    y: -300,
-    opacity: 0,
-    transition: { duration: 0.2 },
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      ...transition,
-      duration: 1,
-    },
-  },
-}
-
-const getThumbnailVariants = (index: number) => ({
-  hidden: {
-    opacity: 0,
-    y: (100 * index) / 2 + 100,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: index / 3 + 0.5,
-    },
-  },
-})
-
 export default function GameModes() {
   const [loaded, setLoaded] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
   const ref = useRef(null)
   const isInView = useInView(ref, { margin: '0px 0px -400px 0px' })
-  const controls = useAnimation()
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
     loop: true,
     created() {
       setLoaded(true)
     },
+    slideChanged(s) {
+      setCurrentSlide(s.track.details.rel)
+    },
   })
-
-  useEffect(() => {
-    if (isInView) {
-      setTimeout(() => {
-        controls.start('visible')
-      }, TRANSITION_DELAY)
-    } else {
-      controls.set('hidden')
-    }
-  }, [controls, isInView])
 
   const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
     {
@@ -175,10 +124,11 @@ export default function GameModes() {
               />
             </div>
           </div>
-          <motion.div
-            variants={bannerVariants}
-            animate={controls}
-            className="relative will-change-transform"
+          <div
+            className={twMerge(
+              'animate__animated relative will-change-transform',
+              isInView && 'animate__fadeInDown'
+            )}
           >
             <div ref={sliderRef} className="keen-slider">
               <div className="keen-slider__slide">
@@ -227,45 +177,51 @@ export default function GameModes() {
                 />
               </>
             )}
-          </motion.div>
+          </div>
 
           <div
             ref={thumbnailRef}
             className="keen-slider thumbnail -ml-2 mt-4 !overflow-visible sm:-ml-6"
           >
-            <motion.div
-              variants={getThumbnailVariants(0)}
-              animate={controls}
-              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent will-change-transform sm:ml-6 sm:border-4"
+            <div
+              className={twMerge(
+                'animate__animated keen-slider__slide ml-2 cursor-pointer border-2 border-transparent will-change-transform sm:ml-6 sm:border-4',
+                isInView && 'animate__fadeInUp',
+                currentSlide === 0 && 'slide-active'
+              )}
             >
               <img
                 src="/mode/thumb-1.png"
                 alt="Thumb 1"
                 className="h-full w-full"
               />
-            </motion.div>
-            <motion.div
-              variants={getThumbnailVariants(1)}
-              animate={controls}
-              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent will-change-transform sm:ml-6 sm:border-4"
+            </div>
+            <div
+              className={twMerge(
+                'animate__animated keen-slider__slide ml-2 cursor-pointer border-2 border-transparent will-change-transform sm:ml-6 sm:border-4',
+                isInView && 'animate__fadeInUp animate__delay-1s',
+                currentSlide === 1 && 'slide-active'
+              )}
             >
               <img
                 src="/mode/thumb-2.png"
                 alt="Thumb 2"
                 className="h-full w-full"
               />
-            </motion.div>
-            <motion.div
-              variants={getThumbnailVariants(2)}
-              animate={controls}
-              className="keen-slider__slide ml-2 cursor-pointer border-2 border-transparent will-change-transform sm:ml-6 sm:border-4"
+            </div>
+            <div
+              className={twMerge(
+                'animate__animated keen-slider__slide ml-2 cursor-pointer border-2 border-transparent will-change-transform sm:ml-6 sm:border-4',
+                isInView && 'animate__fadeInUp animate__delay-2s',
+                currentSlide === 2 && 'slide-active'
+              )}
             >
               <img
                 src="/mode/thumb-3.png"
                 alt="Thumb 3"
                 className="h-full w-full"
               />
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

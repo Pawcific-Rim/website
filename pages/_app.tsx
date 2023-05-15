@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   useMount(() => {
+    document.documentElement.style.setProperty('--animate-delay', '.5s')
     setViewHeight()
     window.addEventListener('resize', () => {
       setViewHeight()
