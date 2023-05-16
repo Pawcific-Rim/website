@@ -223,3 +223,45 @@ a {
     display: none;
   }
 }
+
+.animate__delay-6s {
+  animation-delay: calc(var(--animate-delay) * 6);
+}
+
+.animate__delay-7s {
+  animation-delay: calc(var(--animate-delay) * 7);
+}
+
+.animate__zoomScaleDown {
+  --animate-duration: 4s;
+  --animate-delay: 1s;
+  -webkit-animation-name: zoomScaleDown;
+  animation-name: zoomScaleDown;
+}
+
+@keyframes zoomScaleDown {
+  from {
+    transform: scale3d(2, 2, 0.1);
+    transform-origin: top left;
+  }
+
+  20% {
+    transform: scale3d(2, 2, 0.1);
+    transform-origin: top left;
+  }
+
+  35% {
+    transform: scale3d(2, 2, 0.1);
+    transform-origin: top center;
+  }
+
+  40% {
+    transform: scale3d(2, 2, 0.1);
+    transform-origin: top center;
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+    transform-origin: top center;
+  }
+}
