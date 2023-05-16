@@ -249,17 +249,12 @@ a {
     transform-origin: top left;
   }
 
-  10% {
-    transform: scale3d(2.3, 2.3, 0.1);
-    transform-origin: top left;
-  }
-
-  40% {
+  35% {
     transform: scale3d(2, 2, 0.1);
     transform-origin: top center;
   }
 
-  50% {
+  45% {
     transform: scale3d(2, 2, 0.1);
     transform-origin: top center;
   }
