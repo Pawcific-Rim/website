@@ -94,7 +94,7 @@ const Banner = () => {
           <motion.div
             className={twMerge(
               'animate__animated footer-content-mask container mx-auto overflow-hidden rounded-xl bg-black bg-opacity-50 p-6 will-change-transform',
-              isInView && 'animate__slideInUp animate__delay-7s'
+              isInView && 'animate__fadeInUp animate__delay-7s'
             )}
           >
             <div className="flex flex-col items-center justify-between space-x-0 space-y-6 sm:flex-row sm:space-x-6 sm:space-y-0">
