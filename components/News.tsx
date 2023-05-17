@@ -150,7 +150,7 @@ export default function News() {
             <div className="mt-5 flex items-center justify-center lg:hidden">
               <button
                 className={twMerge(
-                  'animate__animated mr-6 w-[48px] will-change-transform sm:w-[100px]',
+                  'animate__animated mr-6 w-[48px] will-change-transform sm:w-[64px] lg:w-[100px]',
                   isInView && 'animate__fadeInTopLeft'
                 )}
                 onClick={(e: any) =>
@@ -161,7 +161,7 @@ export default function News() {
               </button>
               <button
                 className={twMerge(
-                  'animate__animated ml-6 w-[48px] will-change-transform sm:w-[100px]',
+                  'animate__animated ml-6 w-[48px] will-change-transform sm:w-[64px] lg:w-[100px]',
                   isInView && 'animate__fadeInTopRight'
                 )}
                 onClick={(e: any) =>
