@@ -70,12 +70,12 @@ const Banner = () => {
             <p className="text-center">Assemble Your</p>
             <p className="text-center">Mecha Army</p>
           </h2>
-          <div className="absolute flex h-full w-full scale-[0.55] transform items-center sm:scale-[0.8] md:scale-100">
+          <div className="absolute flex h-full w-[780px] transform items-center sm:w-[1186px] md:w-[1584px]">
             <img
               src="/animate-intro/text-light.png"
               alt="Text light"
               className={twMerge(
-                'animate__animated overflow-visible object-none brightness-125 filter',
+                'animate__animated overflow-visible object-cover brightness-125 filter',
                 isInView && 'animate__fadeInDown animate__delay-6s'
               )}
             />
