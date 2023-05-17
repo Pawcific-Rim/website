@@ -112,7 +112,13 @@ a {
   height: 46%;
   width: auto;
 
+  @include sm {
+    bottom: 11%;
+    height: 50%;
+  }
+
   @include lg {
+    bottom: 11%;
     height: 55%;
   }
 }
