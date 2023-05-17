@@ -22,7 +22,7 @@ const NewsItem = ({
   return (
     <div
       className={twMerge(
-        'animate__animated flex flex-col px-2 will-change-transform md:px-0',
+        'animate__animated flex flex-col will-change-transform md:px-0',
         isInView && `animate__fadeInUp animate__delay-${index}s`
       )}
     >
@@ -39,17 +39,19 @@ export default function News() {
 
   const [thumbnailRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
-    loop: true,
     created() {
       setLoaded(true)
     },
     slides: {
-      origin: 'center',
-      perView: 1,
-      spacing: 0,
+      perView: 1.3,
+      spacing: 16,
     },
+    mode: 'free',
+    loop: false,
     breakpoints: {
       '(min-width: 640px)': {
+        loop: true,
+        mode: 'snap',
         slides: {
           perView: 3,
           spacing: 32,
@@ -88,7 +90,7 @@ export default function News() {
             As seen in
           </h2>
 
-          <div className="flex flex-row items-center justify-center px-8">
+          <div className="flex flex-row items-center justify-center">
             <button
               className={twMerge(
                 'animate__animated mr-6 hidden w-[100px] will-change-transform lg:block',
@@ -104,7 +106,7 @@ export default function News() {
               ref={thumbnailRef}
               className="keen-slider thumbnail mt-8 !overflow-visible md:mt-16 md:!overflow-hidden"
             >
-              <div className="keen-slider__slide cursor-pointer">
+              <div className="keen-slider__slide cursor-pointer md:w-auto">
                 <NewsItem
                   src="/news/article-1.png"
                   alt="Article 1"
@@ -113,7 +115,7 @@ export default function News() {
                   index={0}
                 />
               </div>
-              <div className="keen-slider__slide cursor-pointer">
+              <div className="keen-slider__slide cursor-pointer md:w-auto">
                 <NewsItem
                   src="/news/article-2.png"
                   alt="Article 2"
@@ -122,7 +124,7 @@ export default function News() {
                   index={1}
                 />
               </div>
-              <div className="keen-slider__slide cursor-pointer">
+              <div className="keen-slider__slide cursor-pointer md:w-auto">
                 <NewsItem
                   src="/news/article-3.png"
                   alt="Article 3"

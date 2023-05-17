@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { motion, useInView } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
 
 import Button from '@/components/Button'
@@ -60,29 +60,30 @@ const Banner = () => {
             isInView && 'animate__fadeIn animate__delay-7s'
           )}
         />
-        <div className="relative flex flex-col items-center justify-center lg:transform">
+        <div className="relative flex flex-col items-center justify-center overflow-visible pb-6 lg:transform">
           <h2
             className={twMerge(
-              'intro-title-2 animate__animated z-10 mb-6 w-full text-[40px] font-bold capitalize leading-[48px] will-change-transform sm:text-6xl md:text-[80px] md:leading-[88px]',
+              'intro-title-2 animate__animated z-10 w-full text-[40px] font-bold capitalize leading-[52px] will-change-transform sm:text-6xl md:text-[80px] md:leading-[88px]',
               isInView && 'animate__fadeInDown animate__delay-8s'
             )}
           >
             <p className="text-center">Assemble Your</p>
             <p className="text-center">Mecha Army</p>
           </h2>
+          <div className="absolute flex h-full w-full scale-[0.55] transform items-center sm:scale-[0.8] md:scale-100">
+            <img
+              src="/animate-intro/text-light.png"
+              alt="Text light"
+              className={twMerge(
+                'animate__animated overflow-visible object-none brightness-125 filter',
+                isInView && 'animate__fadeInDown animate__delay-7s'
+              )}
+            />
+          </div>
           <div
-            style={{
-              backgroundImage: 'url(/animate-intro/text-light.png)',
-            }}
             className={twMerge(
-              'animate__animated absolute h-full w-screen transform bg-cover bg-center bg-no-repeat brightness-105 filter sm:w-full lg:bg-contain',
-              isInView && 'animate__fadeInDown animate__delay-7s'
-            )}
-          />
-          <div
-            className={twMerge(
-              'intro-shadow animate__animated absolute inset-0 mb-6 w-full text-[40px] font-bold capitalize leading-[48px] text-transparent will-change-transform sm:text-6xl md:text-[80px] md:leading-[88px]',
-              isInView && 'animate__fadeInDown animate__delay-8s'
+              'intro-shadow animate__animated absolute inset-0 w-full text-[40px] font-bold capitalize leading-[52px]  will-change-transform sm:text-6xl md:text-[80px] md:leading-[88px]',
+              isInView && 'animate__fadeInDown animate__delay-8s__1'
             )}
           >
             <p className="text-center">Assemble Your</p>

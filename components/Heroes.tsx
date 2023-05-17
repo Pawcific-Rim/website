@@ -184,8 +184,8 @@ export default function Heroes() {
               <h2 className="character-name z-10 mb-2 hidden text-[80px] font-bold capitalize leading-[88px] text-white sm:block">
                 Shiba yukata
               </h2>
-              <div className="relative isolate mb-[40px]">
-                <p className="relative z-10 hidden text-2xl capitalize text-white sm:block">
+              <div className="relative isolate mb-[40px] hidden sm:block">
+                <p className="relative z-10 text-2xl capitalize text-white">
                   The Strongest hero in Galaxy 109
                 </p>
                 <img
@@ -211,8 +211,7 @@ export default function Heroes() {
             )}
           >
             {loaded && instanceRef.current && (
-              <div className="flex items-center rounded-xl bg-gradient-to-b from-[#C1A6F3] to-[#9778CD] py-4">
-                <div className="w-4 sm:hidden" />
+              <div className="flex items-center rounded-xl bg-gradient-to-b from-[#C1A6F3] to-[#9778CD] px-4 py-4 sm:px-0">
                 <button
                   className="hidden pr-4 sm:block sm:w-[72px] lg:w-[96px]"
                   onClick={(e: any) =>
@@ -262,7 +261,6 @@ export default function Heroes() {
                     />
                   </div>
                 </div>
-                <div className="w-4 sm:hidden" />
                 <button
                   className="hidden pl-4 sm:block sm:w-[72px] lg:w-[96px]"
                   onClick={(e: any) =>
