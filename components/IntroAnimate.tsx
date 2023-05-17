@@ -41,7 +41,7 @@ const Banner = () => {
           alt="Char main"
           className={twMerge(
             'animate__animated charMain will-change-transform',
-            isInView && 'animate__fadeIn animate__delay-7s'
+            isInView && 'animate__fadeIn animate__delay-6s'
           )}
         />
         <motion.img
@@ -49,7 +49,7 @@ const Banner = () => {
           alt="Char 1"
           className={twMerge(
             'animate__animated charLeft will-change-transform',
-            isInView && 'animate__fadeIn animate__delay-7s'
+            isInView && 'animate__fadeIn animate__delay-6s'
           )}
         />
         <motion.img
@@ -57,14 +57,14 @@ const Banner = () => {
           alt="Char left"
           className={twMerge(
             'animate__animated charRight will-change-transform',
-            isInView && 'animate__fadeIn animate__delay-7s'
+            isInView && 'animate__fadeIn animate__delay-6s'
           )}
         />
         <div className="relative flex flex-col items-center justify-center overflow-visible pb-6 lg:transform">
           <h2
             className={twMerge(
               'intro-title-2 animate__animated z-10 w-full text-[40px] font-bold capitalize leading-[52px] will-change-transform sm:text-6xl md:text-[80px] md:leading-[88px]',
-              isInView && 'animate__fadeInDown animate__delay-8s'
+              isInView && 'animate__fadeInDown animate__delay-7s'
             )}
           >
             <p className="text-center">Assemble Your</p>
@@ -76,14 +76,14 @@ const Banner = () => {
               alt="Text light"
               className={twMerge(
                 'animate__animated overflow-visible object-none brightness-125 filter',
-                isInView && 'animate__fadeInDown animate__delay-7s'
+                isInView && 'animate__fadeInDown animate__delay-6s'
               )}
             />
           </div>
           <div
             className={twMerge(
               'intro-shadow animate__animated absolute inset-0 w-full text-[40px] font-bold capitalize leading-[52px]  will-change-transform sm:text-6xl md:text-[80px] md:leading-[88px]',
-              isInView && 'animate__fadeInDown animate__delay-8s__1'
+              isInView && 'animate__fadeInDown animate__delay-7s__1'
             )}
           >
             <p className="text-center">Assemble Your</p>
@@ -94,7 +94,7 @@ const Banner = () => {
           <motion.div
             className={twMerge(
               'animate__animated footer-content-mask container mx-auto overflow-hidden rounded-xl bg-black bg-opacity-50 p-6 will-change-transform',
-              isInView && 'animate__slideInUp animate__delay-8s'
+              isInView && 'animate__slideInUp animate__delay-7s'
             )}
           >
             <div className="flex flex-col items-center justify-between space-x-0 space-y-6 sm:flex-row sm:space-x-6 sm:space-y-0">

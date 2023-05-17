@@ -254,13 +254,13 @@ a {
   animation-delay: calc(var(--animate-delay) * 8);
 }
 
-.animate__delay-8s__1 {
-  animation-delay: calc(var(--animate-delay) * 7.95);
+.animate__delay-7s__1 {
+  animation-delay: calc(var(--animate-delay) * 6.95);
 }
 
 .animate__zoomScaleDown {
   animation-duration: 4s;
-  animation-delay: 1s;
+  animation-delay: 0.5s;
   -webkit-animation-name: zoomScaleDown;
   animation-name: zoomScaleDown;
 }
