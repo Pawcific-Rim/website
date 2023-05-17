@@ -31,7 +31,7 @@ const Banner = () => {
             objectPosition: 'center',
           }}
           quality={80}
-          priority={true}
+          priority
         />
       </picture>
 

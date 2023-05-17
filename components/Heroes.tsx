@@ -90,7 +90,7 @@ export default function Heroes() {
             objectPosition: 'center',
           }}
           quality={80}
-          priority={true}
+          priority
         />
       </picture>
       <div

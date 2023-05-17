@@ -73,7 +73,7 @@ export default function News() {
             objectPosition: 'center',
           }}
           quality={80}
-          priority={true}
+          priority
         />
       </picture>
       <div

@@ -31,7 +31,7 @@ const IntroBanner = () => {
             objectPosition: 'center',
           }}
           quality={80}
-          priority={true}
+          priority
         />
       </picture>
       <div className="container absolute inset-0 mx-auto mt-[72px] p-6 sm:pt-16 lg:mx-0">
@@ -82,7 +82,12 @@ const IntroBanner = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-16 left-0 overflow-hidden rounded-r-xl border-2 border-l-0 border-[#A169EB] outline outline-4 outline-offset-0 outline-[#5B5183]">
+      <div
+        className="absolute bottom-16 left-0 overflow-hidden rounded-r-xl border-2 border-l-0 border-[#A169EB]"
+        style={{
+          boxShadow: '0px 0px 0px 4px #5B5183',
+        }}
+      >
         {showSocials ? (
           <div
             onClick={toggleSocials}
