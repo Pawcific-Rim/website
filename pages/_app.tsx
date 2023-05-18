@@ -1,5 +1,5 @@
 import { Montserrat, Inter } from 'next/font/google'
-import { useMount } from 'ahooks'
+import { useEffect } from 'react'
 
 import '@/styles/globals.scss'
 import type { AppProps } from 'next/app'
@@ -16,13 +16,13 @@ export default function App({ Component, pageProps }: AppProps) {
     document.documentElement.style.setProperty('--vh', `${vh}px`)
   }
 
-  useMount(() => {
+  useEffect(() => {
     document.documentElement.style.setProperty('--animate-delay', '.5s')
     setViewHeight()
     window.addEventListener('resize', () => {
       setViewHeight()
     })
-  })
+  }, [])
 
   return (
     <main

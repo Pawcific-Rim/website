@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
@@ -7,12 +7,22 @@ import { useInView } from 'framer-motion'
 
 import Button from '@/components/Button'
 
+import type { Dispatch, SetStateAction } from 'react'
+
 const SOCIALS_ICON_SIZE = 72
 
-const IntroBanner = () => {
+interface Props {
+  setShowPlayButton: Dispatch<SetStateAction<boolean>>
+}
+
+const IntroBanner = ({ setShowPlayButton }: Props) => {
   const [showSocials, setShowSocials] = useState(true)
   const ref = useRef(null)
   const isInView = useInView(ref)
+
+  useEffect(() => {
+    setShowPlayButton(!isInView)
+  }, [isInView, setShowPlayButton])
 
   const toggleSocials = () => setShowSocials(!showSocials)
 

@@ -24,7 +24,11 @@ const links = [
   },
 ]
 
-const Header = () => {
+interface Props {
+  showPlayButton: boolean
+}
+
+const Header = ({ showPlayButton }: Props) => {
   const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -46,7 +50,7 @@ const Header = () => {
     <>
       <header
         className={twMerge(
-          'fixed left-0 right-0 top-0 z-10 bg-gradient-to-b from-[#4836A4] to-[#A064E0] px-4 md:px-6 lg:max-h-[72px] lg:px-0',
+          'fixed left-0 right-0 top-0 z-10 bg-gradient-to-b from-[#4836A4] to-[#A064E0] px-4 transition-all md:px-6 lg:max-h-[72px] lg:px-0',
           isMenuOpen && 'h-screen'
         )}
       >
@@ -116,7 +120,12 @@ const Header = () => {
               </Link>
             ))}
           </nav>
-          <button className="hidden rounded-xl bg-gradient-to-b from-[#FF7E40] to-[#FFEB37] p-1 shadow-md hover:shadow-2xl lg:block">
+          <button
+            className={twMerge(
+              'animate__animated hidden rounded-xl bg-gradient-to-b from-[#FF7E40] to-[#FFEB37] p-1 shadow-md transition-all hover:shadow-2xl lg:block',
+              showPlayButton ? 'animate__fadeIn' : '!hidden'
+            )}
+          >
             <div className="back flex h-full w-full items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] px-6 py-2 font-bold uppercase text-black">
               Play Game
             </div>

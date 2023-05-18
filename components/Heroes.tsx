@@ -109,7 +109,7 @@ export default function Heroes() {
             </h2>
             <div
               className={twMerge(
-                'animate__animated relative isolate mb-[40px] sm:hidden',
+                'animate__animated relative isolate sm:hidden',
                 isInView && 'animate__fadeIn animate__delay-1s'
               )}
             >
@@ -130,7 +130,7 @@ export default function Heroes() {
             <div
               ref={sliderRef}
               className={twMerge(
-                'keen-slider animate__animated',
+                'keen-slider animate__animated mt-11',
                 isInView && 'animate__fadeInDown animate__delay-1s'
               )}
             >

@@ -3,3 +3,5 @@ declare global {
         fullpage_api: any;
     }
 }
+
+export {};
