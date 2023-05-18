@@ -10,7 +10,7 @@ import Button from '@/components/Button'
 const SOCIALS_ICON_SIZE = 72
 
 const IntroBanner = () => {
-  const [showSocials, setShowSocials] = useState(false)
+  const [showSocials, setShowSocials] = useState(true)
   const ref = useRef(null)
   const isInView = useInView(ref)
 
@@ -83,7 +83,7 @@ const IntroBanner = () => {
         </div>
       </div>
       <div
-        className="absolute bottom-16 left-0 overflow-hidden rounded-r-xl border-2 border-l-0 border-[#A169EB]"
+        className="absolute bottom-16 left-0 overflow-hidden rounded-r-xl border-2 border-l-0 border-[#A169EB] bg-[#414995]"
         style={{
           boxShadow: '0px 0px 0px 4px #5B5183',
         }}
@@ -144,7 +144,10 @@ const IntroBanner = () => {
         ) : (
           <div
             onClick={toggleSocials}
-            className="w-[72px] bg-[#414995] sm:w-[100px]"
+            className={twMerge(
+              'animate__animated w-[72px] bg-[#414995] sm:w-[100px]',
+              isInView && 'animate__slideInLeft'
+            )}
           >
             <img
               src="/socials/toggle-left.png"

@@ -109,11 +109,11 @@ export default function Heroes() {
             </h2>
             <div
               className={twMerge(
-                'animate__animated relative isolate mb-[40px]',
+                'animate__animated relative isolate mb-[40px] sm:hidden',
                 isInView && 'animate__fadeIn animate__delay-1s'
               )}
             >
-              <p className=" text-center text-base capitalize leading-[32px] text-white sm:hidden">
+              <p className=" text-center text-base capitalize leading-[32px] text-white">
                 The Strongest hero in Galaxy 109
               </p>
               <img
