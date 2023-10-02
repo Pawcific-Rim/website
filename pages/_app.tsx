@@ -1,4 +1,5 @@
-import { Montserrat, Inter } from 'next/font/google'
+import localFont from 'next/font/local'
+import { Montserrat } from 'next/font/google'
 import { useEffect } from 'react'
 
 import '@/styles/globals.scss'
@@ -8,7 +9,15 @@ const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-montserrat',
 })
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+
+const technoRace = localFont({
+  src: [
+    {
+      path: '../public/fonts/TechnoRace.ttf',
+    },
+  ],
+  variable: '--font-techno-race',
+})
 
 export default function App({ Component, pageProps }: AppProps) {
   const setViewHeight = () => {
@@ -26,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <main
-      className={`${montserrat.variable} ${inter.variable} font-montserrat`}
+      className={`${montserrat.variable} ${technoRace.variable} font-montserrat`}
     >
       <Component {...pageProps} />
     </main>

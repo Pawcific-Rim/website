@@ -8,6 +8,7 @@ import GameModes from '@/components/GameModes'
 import Heroes from '@/components/Heroes'
 import News from '@/components/News'
 import Footer from '@/components/Footer'
+import JoinCommunity from '@/components/JoinCommunity'
 
 export default function Home() {
   return (
@@ -52,6 +53,7 @@ export default function Home() {
             )
           }}
         />
+        <JoinCommunity />
       </main>
     </>
   )

@@ -46,16 +46,16 @@ const Header = () => {
     <>
       <header
         className={twMerge(
-          'fixed left-0 right-0 top-0 z-10 bg-[#00062B] px-6 transition-all md:px-8 lg:mt-6 lg:max-h-[72px] lg:bg-transparent',
+          'fixed left-0 right-0 top-0 z-10 bg-[#00062B] px-6 transition-all md:px-8 lg:mt-6 lg:max-h-[76px] lg:bg-transparent',
           isMenuOpen && 'h-screen'
         )}
       >
-        <div className="flex w-full justify-between py-3 lg:h-[72px] lg:gap-16 lg:rounded-xl lg:bg-transparent/[0.64] lg:px-2 xl:h-[90px]">
+        <div className="flex w-full justify-between py-3 lg:h-[76px] lg:gap-16 lg:rounded-xl lg:bg-transparent/[0.64] lg:px-2">
           <Link href="/" className="flex items-center">
             <img
               src="/logo_full.png"
               alt="logo"
-              className="h-auto w-24 lg:-ml-4 lg:w-40 xl:w-48"
+              className="h-auto w-24 lg:-ml-4 lg:w-40"
             />
           </Link>
           <div className="flex items-center">
@@ -65,7 +65,7 @@ const Header = () => {
                   href={href}
                   key={href}
                   className={twMerge(
-                    'text-xl font-medium capitalize leading-none tracking-[0.48px] text-white hover:text-[#FFEE36] xl:text-2xl',
+                    'text-xl font-medium capitalize leading-none tracking-[0.48px] text-white hover:text-[#FFEE36]',
                     router.pathname === href && 'text-[#FED73B]'
                   )}
                 >
@@ -75,7 +75,7 @@ const Header = () => {
             </nav>
             <button
               className={twMerge(
-                'ml-24 hidden items-center justify-center whitespace-nowrap rounded-lg bg-[#FED73B] px-6  py-4 text-xl font-semibold capitalize leading-none text-black hover:bg-[#FFEE36] lg:inline-flex xl:px-8 xl:py-5 xl:text-2xl'
+                'ml-16 hidden items-center justify-center whitespace-nowrap rounded-lg bg-[#FED73B] px-6  py-5 text-xl font-semibold capitalize leading-none text-black hover:bg-[#FFEE36] lg:inline-flex'
               )}
             >
               Play Game

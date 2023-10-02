@@ -94,7 +94,7 @@ const Footer = () => {
               <div className="flex grow-0 flex-col">
                 <Link
                   href="/"
-                  className="leading-0 flex items-center gap-2 whitespace-nowrap bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] bg-clip-text font-inter text-2xl font-semibold text-transparent"
+                  className="leading-0 flex items-center gap-2 whitespace-nowrap bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] bg-clip-text text-2xl font-semibold text-transparent"
                 >
                   <img
                     src="/logo_full.png"

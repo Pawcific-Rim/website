@@ -19,8 +19,8 @@ module.exports = {
     }),
     extend: {
       fontFamily: {
-        inter: ['var(--font-inter)'],
         montserrat: ['var(--font-montserrat)'],
+        'techno-race': ['var(--font-techno-race)'],
       },
       screens: {
         lg: '1025px',
