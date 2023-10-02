@@ -67,8 +67,8 @@ const Banner = () => {
               isInView && 'animate__fadeInDown animate__delay-7s'
             )}
           >
-            <p className="text-center">Assemble Your</p>
-            <p className="text-center">Mecha Army</p>
+            <p className="text-center font-techno-race">Assemble Your</p>
+            <p className="text-center font-techno-race">Mecha Army</p>
           </h2>
           <div className="absolute flex h-full w-[780px] transform items-center sm:w-[1186px] md:w-[1584px]">
             <img
@@ -82,12 +82,12 @@ const Banner = () => {
           </div>
           <div
             className={twMerge(
-              'intro-shadow animate__animated absolute inset-0 w-full text-[40px] font-bold capitalize leading-[52px]  will-change-transform sm:text-6xl md:text-[80px] md:leading-[88px]',
+              'intro-shadow animate__animated absolute inset-0 w-full text-[40px] font-bold capitalize leading-[52px] will-change-transform sm:text-6xl md:text-[80px] md:leading-[88px]',
               isInView && 'animate__fadeInDown animate__delay-7s__1'
             )}
           >
-            <p className="text-center">Assemble Your</p>
-            <p className="text-center">Mecha Army</p>
+            <p className="text-center font-techno-race">Assemble Your</p>
+            <p className="text-center font-techno-race">Mecha Army</p>
           </div>
         </div>
         <div className="absolute bottom-6 left-1/2 mb-6 w-full -translate-x-1/2 transform px-6 sm:bottom-10 sm:mb-0 sm:px-10 lg:bottom-[72px] lg:max-w-[768px]">
