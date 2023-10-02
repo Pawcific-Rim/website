@@ -21,9 +21,9 @@ const Banner = () => {
       )}
     >
       <picture>
-        <source srcSet="/animate-intro/pc.png" />
+        <source srcSet="/animate-intro/bg.png" />
         <Image
-          src="/animate-intro/pc.png"
+          src="/animate-intro/bg.png"
           alt="Heroes Background image"
           fill
           style={{

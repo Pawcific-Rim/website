@@ -28,22 +28,17 @@ const IntroBanner = ({ setShowPlayButton }: Props) => {
 
   return (
     <section className="relative h-auto min-h-screen overflow-hidden">
-      <picture>
-        <source media="(max-width: 640px)" srcSet="/intro/sp.png" />
-        <source media="(max-width: 1024px)" srcSet="/intro/ipad.png" />
-        <source srcSet="/intro/pc.png" />
-        <Image
-          src="/intro/pc.png"
-          alt="Background image"
-          fill
-          style={{
-            objectFit: 'cover',
-            objectPosition: 'center',
-          }}
-          quality={80}
-          priority
-        />
-      </picture>
+      <Image
+        src="/intro/bg.png"
+        alt="Background image"
+        fill
+        style={{
+          objectFit: 'cover',
+          objectPosition: 'center',
+        }}
+        quality={80}
+        priority
+      />
       <div className="container absolute inset-0 mx-auto mt-[72px] p-6 sm:pt-16 lg:mx-0">
         <div
           ref={ref}
