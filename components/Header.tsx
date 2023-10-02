@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { useEffect, useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
 
 const links = [
   {
@@ -24,11 +24,7 @@ const links = [
   },
 ]
 
-interface Props {
-  showPlayButton: boolean
-}
-
-const Header = ({ showPlayButton }: Props) => {
+const Header = () => {
   const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -50,18 +46,49 @@ const Header = ({ showPlayButton }: Props) => {
     <>
       <header
         className={twMerge(
-          'fixed left-0 right-0 top-0 z-10 bg-gradient-to-b from-[#4836A4] to-[#A064E0] px-4 transition-all md:px-6 lg:max-h-[72px] lg:px-0',
+          'fixed left-0 right-0 top-0 z-10 bg-[#00062B] px-6 transition-all md:px-8 lg:mt-6 lg:max-h-[72px] lg:bg-transparent',
           isMenuOpen && 'h-screen'
         )}
       >
-        <div className="flex h-[72px] w-full items-center justify-between py-3 lg:container lg:mx-auto lg:justify-center lg:gap-16">
+        <div className="flex w-full justify-between py-3 lg:h-[72px] lg:gap-16 lg:rounded-xl lg:bg-transparent/[0.64] lg:px-2 xl:h-[90px]">
+          <Link href="/" className="flex items-center">
+            <img
+              src="/logo_full.png"
+              alt="logo"
+              className="h-auto w-24 lg:-ml-4 lg:w-40 xl:w-48"
+            />
+          </Link>
+          <div className="flex items-center">
+            <nav className="hidden gap-14 lg:inline-flex">
+              {links.map(({ href, title }) => (
+                <Link
+                  href={href}
+                  key={href}
+                  className={twMerge(
+                    'text-xl font-medium capitalize leading-none tracking-[0.48px] text-white hover:text-[#FFEE36] xl:text-2xl',
+                    router.pathname === href && 'text-[#FED73B]'
+                  )}
+                >
+                  {title}
+                </Link>
+              ))}
+            </nav>
+            <button
+              className={twMerge(
+                'ml-24 hidden items-center justify-center whitespace-nowrap rounded-lg bg-[#FED73B] px-6  py-4 text-xl font-semibold capitalize leading-none text-black hover:bg-[#FFEE36] lg:inline-flex xl:px-8 xl:py-5 xl:text-2xl'
+              )}
+            >
+              Play Game
+            </button>
+          </div>
+
           <button className="lg:hidden" onClick={toggleMenu}>
             <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
-              className="h-6 w-6 text-white"
+              className="h-8 w-8 text-white"
               xmlns="http://www.w3.org/2000/svg"
             >
               {!isMenuOpen ? (
@@ -94,45 +121,6 @@ const Header = ({ showPlayButton }: Props) => {
               )}
             </svg>
           </button>
-          <Link
-            href="/"
-            className="leading-0 flex items-center gap-2 whitespace-nowrap bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] bg-clip-text font-inter text-2xl font-semibold text-transparent"
-          >
-            <img src="/logo_full.png" alt="logo" className="h-auto w-24" />
-            {/* <h1>LOGO NAME</h1> */}
-          </Link>
-          <nav className="hidden items-center justify-between gap-[52px] lg:flex">
-            {links.map(({ href, title }) => (
-              <Link
-                href={href}
-                key={href}
-                className="flex items-center font-semibold uppercase text-white hover:bg-gradient-to-b hover:from-[#FFEE36] hover:to-[#FF7A40] hover:bg-clip-text hover:text-transparent"
-              >
-                <span
-                  className={twMerge(
-                    'mr-2 inline-block h-2 w-2 rounded-full',
-                    router.pathname === href
-                      ? 'bg-gradient-to-b from-[#FFEE36] to-[#FF7A40]'
-                      : 'bg-transparent'
-                  )}
-                />
-                {title}
-              </Link>
-            ))}
-          </nav>
-          <button
-            className={twMerge(
-              'animate__animated hidden rounded-xl bg-gradient-to-b from-[#FF7E40] to-[#FFEB37] p-1 shadow-md transition-all hover:shadow-2xl lg:block',
-              showPlayButton ? 'animate__fadeIn' : '!hidden'
-            )}
-          >
-            <div className="back flex h-full w-full items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] px-6 py-2 font-bold uppercase text-black">
-              Play Game
-            </div>
-          </button>
-
-          {/* Hamburger spacing */}
-          <div className="h-6 w-6 lg:hidden" />
         </div>
         <AnimatePresence
           initial={false}
@@ -141,29 +129,23 @@ const Header = ({ showPlayButton }: Props) => {
         >
           {isMenuOpen && (
             <div className="h-screen lg:hidden">
-              <nav className="flex flex-col items-start justify-center gap-12 py-8">
-                {links.map(({ href, title }) => (
-                  <Link
-                    href={href}
-                    key={href}
-                    className="flex items-center font-semibold uppercase text-white hover:bg-gradient-to-b hover:from-[#FFEE36] hover:to-[#FF7A40] hover:bg-clip-text hover:text-transparent"
-                  >
-                    {router.pathname === href && (
-                      <span
-                        className={twMerge(
-                          'mr-2 inline-block h-2 w-2 rounded-full',
-                          'bg-gradient-to-b from-[#FFEE36] to-[#FF7A40]'
-                        )}
-                      />
+              <nav className="flex flex-col items-center justify-center py-8">
+                {links.map(({ href, title }, index) => (
+                  <div key={href} className="flex flex-col items-center">
+                    {index !== 0 && (
+                      <div className="my-6 h-[1px] w-[154px] bg-gray-100" />
                     )}
-                    {title}
-                  </Link>
-                ))}
-                <button className="rounded-xl bg-gradient-to-b from-[#FF7E40] to-[#FFEB37] p-1 shadow-md hover:shadow-2xl">
-                  <div className="back flex h-full w-full items-center justify-center whitespace-nowrap rounded-xl bg-gradient-to-b from-[#FFEE36] to-[#FF7A40] px-6 py-2 font-bold uppercase text-black">
-                    Play Game
+                    <Link
+                      href={href}
+                      className={twMerge(
+                        'text-2xl capitalize leading-none tracking-[0.48px] text-white hover:text-[#FFEE36]',
+                        router.pathname === href && 'text-[#FED73B]'
+                      )}
+                    >
+                      {title}
+                    </Link>
                   </div>
-                </button>
+                ))}
               </nav>
             </div>
           )}

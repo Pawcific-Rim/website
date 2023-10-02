@@ -1,28 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import { useInView } from 'framer-motion'
 
-import Button from '@/components/Button'
-
-import type { Dispatch, SetStateAction } from 'react'
-
 const SOCIALS_ICON_SIZE = 72
 
-interface Props {
-  setShowPlayButton: Dispatch<SetStateAction<boolean>>
-}
-
-const IntroBanner = ({ setShowPlayButton }: Props) => {
+const IntroBanner = () => {
   const [showSocials, setShowSocials] = useState(true)
   const ref = useRef(null)
   const isInView = useInView(ref)
-
-  useEffect(() => {
-    setShowPlayButton(!isInView)
-  }, [isInView, setShowPlayButton])
 
   const toggleSocials = () => setShowSocials(!showSocials)
 
@@ -79,11 +67,13 @@ const IntroBanner = ({ setShowPlayButton }: Props) => {
               isInView && 'animate__fadeInUp'
             )}
           >
-            <Button>
-              <p className="px-6 py-4 text-xl font-bold uppercase text-black">
-                Play Now
-              </p>
-            </Button>
+            <button
+              className={twMerge(
+                'ml-24 hidden items-center justify-center whitespace-nowrap rounded-lg bg-[#FED73B] px-6  py-4 text-xl font-semibold capitalize leading-none text-black shadow-md hover:bg-[#FFEE36] lg:inline-flex xl:px-8 xl:py-5 xl:text-2xl'
+              )}
+            >
+              Play Game
+            </button>
           </div>
         </div>
       </div>

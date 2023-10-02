@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import ReactFullpage from '@fullpage/react-fullpage'
-import { useState } from 'react'
 
 import Header from '@/components/Header'
 import IntroBanner from '@/components/IntroBanner'
@@ -11,8 +10,6 @@ import News from '@/components/News'
 import Footer from '@/components/Footer'
 
 export default function Home() {
-  const [showPlayButton, setShowPlayButton] = useState(false)
-
   return (
     <>
       <Head>
@@ -25,7 +22,7 @@ export default function Home() {
       </Head>
 
       <main className="relative w-full overflow-hidden">
-        <Header showPlayButton={showPlayButton} />
+        <Header />
         <ReactFullpage
           scrollOverflow
           credits={{ enabled: false }}
@@ -34,7 +31,7 @@ export default function Home() {
             return (
               <ReactFullpage.Wrapper>
                 <div className="section">
-                  <IntroBanner setShowPlayButton={setShowPlayButton} />
+                  <IntroBanner />
                 </div>
                 <div id="section2" className="section [&>div]:scrollbar-hide">
                   <IntroAnimate />
