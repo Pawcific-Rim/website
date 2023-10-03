@@ -23,6 +23,7 @@ module.exports = {
         'techno-race': ['var(--font-techno-race)'],
       },
       screens: {
+        xs: '475px',
         lg: '1025px',
       },
     },
