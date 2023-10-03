@@ -16,7 +16,7 @@ const IntroBanner = () => {
         fill
         style={{
           objectFit: 'cover',
-          objectPosition: 'center',
+          objectPosition: '70%',
         }}
         quality={80}
         priority

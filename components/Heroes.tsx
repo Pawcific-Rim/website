@@ -46,15 +46,59 @@ function ThumbnailPlugin(
   }
 }
 
+const SliderPlugin = (slider: KeenSliderInstance) => {
+  function removeActive() {
+    slider.slides.forEach((slide) => {
+      slide.classList.remove('heroes-main-active')
+    })
+  }
+
+  function addActive(idx: number) {
+    slider.slides[idx]?.classList.add('heroes-main-active')
+  }
+
+  function addClickEvents() {
+    slider.slides.forEach((slide: any, idx: number) => {
+      slide.addEventListener('click', () => {
+        slider.moveToIdx(idx)
+      })
+    })
+  }
+
+  slider.on('created', () => {
+    addClickEvents()
+    addActive(slider.track.details.rel)
+    slider.on('animationStarted', (main: KeenSliderInstance) => {
+      removeActive()
+      const next = main.animator.targetIdx || 0
+      addActive(main.track.absToRel(next))
+    })
+  })
+}
+
 export default function Heroes() {
   const [loaded, setLoaded] = useState(false)
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    initial: 0,
-    loop: true,
-    created() {
-      setLoaded(true)
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+    {
+      initial: 0,
+      loop: true,
+      drag: false,
+      breakpoints: {
+        '(min-width: 1025px)': {
+          slides: {
+            origin: 'center',
+            perView: 3,
+            spacing: 24,
+          },
+        },
+      },
+      created() {
+        setLoaded(true)
+      },
     },
-  })
+    [SliderPlugin]
+  )
+
   const ref = useRef(null)
   const isInView = useInView(ref, { margin: '-200px 0px -200px 0px' })
 
@@ -97,12 +141,13 @@ export default function Heroes() {
         ref={ref}
         className="container absolute inset-0 isolate mx-auto mb-[24px] mt-[96px] px-6 md:mb-[96px] md:mt-[120px] lg:max-w-[1440px]"
       >
-        <div className="mx-auto flex h-full w-full flex-col justify-center px-0 sm:px-6 lg:m-auto lg:w-[95vh]">
-          <div className="relative pb-[58px] sm:pb-[89px] lg:pb-[69px]">
+        <div className="mx-auto flex h-full w-full flex-col justify-center px-0 sm:px-6 lg:m-auto lg:w-[95vh] lg:max-w-[100vw] lg:justify-center">
+          <div className="relative sm:pb-[68px] md:pb-[48px] lg:-ml-[17.5vh] lg:w-[130vh]">
             <h2
               className={twMerge(
-                'animate__animated character-name z-10 mb-2 text-center text-[40px] font-bold capitalize leading-[48px] text-white will-change-transform sm:hidden',
-                isInView && 'animate__fadeIn animate__delay-1s'
+                'animate__animated z-10 mb-2 text-center font-bold capitalize text-white will-change-transform sm:hidden',
+                isInView && 'animate__fadeIn animate__delay-1s',
+                'font-techno-race text-[40px] leading-none text-[#79F] xs:text-[54px]'
               )}
             >
               Shiba yukata
@@ -113,147 +158,149 @@ export default function Heroes() {
                 isInView && 'animate__fadeIn animate__delay-1s'
               )}
             >
-              <p className=" text-center text-base capitalize leading-[32px] text-white">
-                The Strongest hero in Galaxy 109
+              <p className="text-center text-xs text-white sm:text-base">
+                Lorem ipsum dolor sit amet consectetur. Tortor id lectus
+                sagittis etiam mattis velit sit non duis. Eros cursus semper
+                ultrices ut. Vitae amet augue hendrerit porttitor dui
               </p>
-              <img
-                src="/intro/text-mask-l.png"
-                alt="Mask 1"
-                className="absolute right-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
-              />
-              <img
-                src="/intro/text-mask-r.png"
-                alt="Mask 2"
-                className="absolute left-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
-              />
             </div>
             <div
               ref={sliderRef}
               className={twMerge(
-                'keen-slider animate__animated mt-11',
+                'keen-slider animate__animated mt-10 xs:mt-4 ',
                 isInView && 'animate__fadeInDown animate__delay-1s'
               )}
             >
-              <div className="keen-slider__slide">
-                <img
-                  className="mx-auto"
-                  src="/heroes/charthumb1.png"
-                  alt="Character 1"
+              <div className="keen-slider__slide !overflow-visible">
+                <div
+                  className="mx-auto flex h-[240px] items-center justify-end border-8 border-transparent xs:h-[320px] md:h-[400px] md:w-[75%]"
+                  style={{
+                    backgroundImage: 'url(/heroes/charthumb1.png)',
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'bottom',
+                  }}
                 />
               </div>
-              <div className="keen-slider__slide">
-                <img
-                  className="mx-auto"
-                  src="/heroes/charthumb2.png"
-                  alt="Character 2"
+              <div className="keen-slider__slide !overflow-visible">
+                <div
+                  className="mx-auto flex h-[240px] items-center justify-end border-8 border-transparent xs:h-[320px] md:h-[400px] md:w-[75%]"
+                  style={{
+                    backgroundImage: 'url(/heroes/charthumb2.png)',
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'bottom',
+                  }}
                 />
               </div>
-              <div className="keen-slider__slide">
-                <img
-                  className="mx-auto"
-                  src="/heroes/charthumb3.png"
-                  alt="Character 3"
+              <div className="keen-slider__slide !overflow-visible">
+                <div
+                  className="mx-auto flex h-[240px] items-center justify-end border-8 border-transparent xs:h-[320px] md:h-[400px] md:w-[75%]"
+                  style={{
+                    backgroundImage: 'url(/heroes/charthumb3.png)',
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'bottom',
+                  }}
                 />
               </div>
-              <div className="keen-slider__slide">
-                <img
-                  className="mx-auto"
-                  src="/heroes/charthumb4.png"
-                  alt="Character 4"
+              <div className="keen-slider__slide !overflow-visible">
+                <div
+                  className="mx-auto flex h-[240px] items-center justify-end border-8 border-transparent xs:h-[320px] md:h-[400px] md:w-[75%]"
+                  style={{
+                    backgroundImage: 'url(/heroes/charthumb4.png)',
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'bottom',
+                  }}
                 />
               </div>
-              <div className="keen-slider__slide">
-                <img
-                  className="mx-auto"
-                  src="/heroes/charthumb5.png"
-                  alt="Character 5"
+              <div className="keen-slider__slide !overflow-visible">
+                <div
+                  className="mx-auto flex h-[240px] items-center justify-end border-8 border-transparent xs:h-[320px] md:h-[400px] md:w-[75%]"
+                  style={{
+                    backgroundImage: 'url(/heroes/charthumb5.png)',
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'bottom',
+                  }}
                 />
               </div>
             </div>
             <div
               className={twMerge(
-                'animate__animated absolute -bottom-10 w-full px-8 text-center sm:-bottom-20 lg:-bottom-24',
+                'animate__animated w-full px-8 text-center',
                 isInView && 'animate__fadeIn animate__delay-1s'
               )}
             >
-              <img
-                src="/heroes/light.png"
-                alt="light"
-                className="absolute bottom-10 left-1/2 z-0 mx-auto h-auto w-[125%] max-w-none -translate-x-1/2 transform sm:bottom-20 lg:bottom-24"
-              />
-              <h2 className="character-name z-10 mb-2 hidden text-[80px] font-bold capitalize leading-[88px] text-white sm:block">
+              <h2 className="z-10 mb-2 hidden font-techno-race text-[64px] font-bold capitalize leading-none text-[#79F] sm:block lg:text-[84px]">
                 Shiba yukata
               </h2>
-              <div className="relative isolate mb-[40px] hidden sm:block">
-                <p className="relative z-10 text-2xl capitalize text-white">
-                  The Strongest hero in Galaxy 109
+              <div className="relative isolate hidden sm:block">
+                <p className="relative z-10 text-sm capitalize text-white">
+                  Lorem ipsum dolor sit amet consectetur. Tortor id lectus
+                  sagittis etiam mattis velit sit non duis. Eros cursus semper
+                  ultrices ut. Vitae amet augue hendrerit porttitor dui
                 </p>
-                <img
-                  src="/intro/text-mask-l.png"
-                  alt="Mask 1"
-                  className="absolute right-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
-                />
-                <img
-                  src="/intro/text-mask-r.png"
-                  alt="Mask 2"
-                  className="absolute left-1/2 top-1/2 -z-10 h-[50px] w-1/2 -translate-y-1/2 transform"
-                />
               </div>
-
-              <img src="/heroes/base.png" alt="base" className="mx-auto" />
             </div>
           </div>
 
           <div
             className={twMerge(
-              'animate__animated heroes-carousel-mask p-1 will-change-transform',
+              'animate__animated mt-4 p-1 will-change-transform sm:-mt-6',
               isInView && 'animate__fadeInUp animate__delay-1s'
             )}
           >
             {loaded && instanceRef.current && (
-              <div className="flex items-center rounded-xl bg-gradient-to-b from-[#C1A6F3] to-[#9778CD] px-4 py-4 sm:px-0">
+              <div className="relative flex items-center rounded-xl px-4 sm:px-6">
+                <img
+                  src="/heroes/mask.png"
+                  alt="mask"
+                  className="absolute left-[-28px] -z-10 mb-2 w-screen max-w-none xs:left-0 xs:w-full"
+                />
                 <button
-                  className="hidden pr-4 sm:block sm:w-[72px] lg:w-[96px]"
+                  className="w-[36px] pr-4 sm:w-[48px] lg:mt-2 lg:w-[96px]"
                   onClick={(e: any) =>
                     e.stopPropagation() || instanceRef.current?.prev()
                   }
                 >
-                  <img src="/heroes/arrow-left.png" alt="Arrow left" />
+                  <img src="/heroes/arrow-left.svg" alt="Arrow left" />
                 </button>
 
                 <div
                   ref={thumbnailRef}
                   className="keen-slider thumbnail flex-1 !overflow-visible"
                 >
-                  <div className="keen-slider__slide cursor-pointer border-2 border-transparent sm:border-4">
+                  <div className="keen-slider__slide mb-2 cursor-pointer border-2 border-transparent">
                     <img
                       className="h-full w-full"
                       src="/heroes/char1.png"
                       alt="Character thumb 1"
                     />
                   </div>
-                  <div className="keen-slider__slide cursor-pointer border-2 border-transparent sm:border-4">
+                  <div className="keen-slider__slide mb-2 cursor-pointer border-2 border-transparent">
                     <img
                       className="h-full w-full"
                       src="/heroes/char2.png"
                       alt="Character thumb 2"
                     />
                   </div>
-                  <div className="keen-slider__slide cursor-pointer border-2 border-transparent sm:border-4">
+                  <div className="keen-slider__slide mb-2 cursor-pointer border-2 border-transparent">
                     <img
                       className="h-full w-full"
                       src="/heroes/char3.png"
                       alt="Character thumb 3"
                     />
                   </div>
-                  <div className="keen-slider__slide cursor-pointer border-2 border-transparent sm:border-4">
+                  <div className="keen-slider__slide mb-2 cursor-pointer border-2 border-transparent">
                     <img
                       className="h-full w-full"
                       src="/heroes/char4.png"
                       alt="Character thumb 4"
                     />
                   </div>
-                  <div className="keen-slider__slide cursor-pointer border-2 border-transparent sm:border-4">
+                  <div className="keen-slider__slide mb-2 cursor-pointer border-2 border-transparent">
                     <img
                       className="h-full w-full"
                       src="/heroes/char5.png"
@@ -262,42 +309,16 @@ export default function Heroes() {
                   </div>
                 </div>
                 <button
-                  className="hidden pl-4 sm:block sm:w-[72px] lg:w-[96px]"
+                  className="w-[36px] pl-4 sm:w-[48px] lg:mt-2 lg:w-[96px]"
                   onClick={(e: any) =>
                     e.stopPropagation() || instanceRef.current?.next()
                   }
                 >
-                  <img src="/heroes/arrow-right.png" alt="Arrow right" />
+                  <img src="/heroes/arrow-right.svg" alt="Arrow right" />
                 </button>
               </div>
             )}
           </div>
-          {loaded && instanceRef.current && (
-            <div className="mt-5 flex items-center justify-center sm:hidden">
-              <button
-                className={twMerge(
-                  'animate__animated mr-6 w-[48px] will-change-transform',
-                  isInView && 'animate__fadeInTopLeft animate__delay-1s'
-                )}
-                onClick={(e: any) =>
-                  e.stopPropagation() || instanceRef.current?.prev()
-                }
-              >
-                <img src="/heroes/arrow-left.png" alt="Arrow left" />
-              </button>
-              <button
-                className={twMerge(
-                  'animate__animated ml-6 w-[48px] will-change-transform',
-                  isInView && 'animate__fadeInTopRight animate__delay-1s'
-                )}
-                onClick={(e: any) =>
-                  e.stopPropagation() || instanceRef.current?.next()
-                }
-              >
-                <img src="/heroes/arrow-right.png" alt="Arrow right" />
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </section>
