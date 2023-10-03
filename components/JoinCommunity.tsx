@@ -12,7 +12,11 @@ const JoinCommunity = () => {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    setIsMobile(window.innerWidth <= 640)
+    const widthMobile = window.innerWidth <= 640
+    setIsMobile(widthMobile)
+    if (widthMobile) {
+      setShowSocials(true)
+    }
   }, [])
 
   if (isMobile)
