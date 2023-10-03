@@ -233,11 +233,11 @@ export default function Heroes() {
                 isInView && 'animate__fadeIn animate__delay-1s'
               )}
             >
-              <h2 className="z-10 mb-2 hidden font-techno-race text-[64px] font-bold capitalize leading-none text-[#79F] sm:block lg:text-[84px]">
+              <h2 className="z-10 mb-4 hidden font-techno-race text-[64px] font-bold capitalize leading-none text-[#79F] sm:block lg:text-[84px]">
                 Shiba yukata
               </h2>
               <div className="relative isolate hidden sm:block">
-                <p className="relative z-10 text-sm capitalize text-white">
+                <p className="relative z-10 text-xl capitalize text-white">
                   Lorem ipsum dolor sit amet consectetur. Tortor id lectus
                   sagittis etiam mattis velit sit non duis. Eros cursus semper
                   ultrices ut. Vitae amet augue hendrerit porttitor dui
@@ -248,7 +248,7 @@ export default function Heroes() {
 
           <div
             className={twMerge(
-              'animate__animated mt-4 p-1 will-change-transform sm:-mt-6',
+              'animate__animated mt-4 p-1 will-change-transform sm:-mt-6 lg:-mt-2',
               isInView && 'animate__fadeInUp animate__delay-1s'
             )}
           >

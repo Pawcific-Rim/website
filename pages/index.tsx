@@ -3,6 +3,7 @@ import ReactFullpage from '@fullpage/react-fullpage'
 
 import Header from '@/components/Header'
 import IntroBanner from '@/components/IntroBanner'
+import Story from '@/components/Story'
 import IntroAnimate from '@/components/IntroAnimate'
 import GameModes from '@/components/GameModes'
 import Heroes from '@/components/Heroes'
@@ -33,6 +34,9 @@ export default function Home() {
               <ReactFullpage.Wrapper>
                 <div className="section">
                   <IntroBanner />
+                </div>
+                <div className="section">
+                  <Story />
                 </div>
                 <div id="section2" className="section [&>div]:scrollbar-hide">
                   <IntroAnimate />

@@ -22,11 +22,11 @@ const NewsItem = ({
       className={twMerge(
         'animate__animated will-change-transform',
         isInView && `animate__fadeInUp animate__delay-${index}s`,
-        'flex items-center space-x-4 rounded-md bg-white p-1 sm:flex-col sm:bg-[#121949]/[0.8] sm:p-2'
+        'flex items-center space-x-4 rounded-md bg-white p-1 sm:flex-col sm:space-x-0 sm:bg-[#121949]/[0.8] sm:p-2'
       )}
     >
       <img src={src} alt={alt} className="h-auto w-1/2 rounded-lg sm:w-full" />
-      <h3 className="line-clamp-3 text-sm capitalize text-black sm:mt-4 sm:line-clamp-2 sm:text-center sm:text-lg sm:text-white lg:text-2xl">
+      <h3 className="line-clamp-3 text-sm font-semibold capitalize text-black sm:my-4 sm:line-clamp-2 sm:text-center sm:text-lg sm:text-white lg:my-6 lg:text-2xl">
         {title}
       </h3>
     </div>
@@ -66,7 +66,7 @@ export default function News() {
             />
             <h2
               className={twMerge(
-                'animate__animated mx-6 my-3 text-center text-2xl font-bold uppercase text-white will-change-transform sm:text-4xl sm:leading-none md:text-[42px] lg:mx-8 lg:my-4 lg:text-[68px]',
+                'animate__animated mx-6 my-3 text-center text-2xl font-bold uppercase text-white will-change-transform sm:text-4xl sm:leading-none md:text-[42px] lg:mx-12 lg:my-6 lg:text-[68px]',
                 isInView && 'animate__fadeInDown'
               )}
             >
