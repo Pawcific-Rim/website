@@ -175,7 +175,7 @@ export default function Heroes() {
                 <div
                   className="mx-auto flex h-[240px] items-center justify-end border-8 border-transparent xs:h-[320px] md:h-[400px] md:w-[75%]"
                   style={{
-                    backgroundImage: 'url(/heroes/charthumb1.png)',
+                    backgroundImage: 'url(/heroes/main1.png)',
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'bottom',
@@ -186,7 +186,7 @@ export default function Heroes() {
                 <div
                   className="mx-auto flex h-[240px] items-center justify-end border-8 border-transparent xs:h-[320px] md:h-[400px] md:w-[75%]"
                   style={{
-                    backgroundImage: 'url(/heroes/charthumb2.png)',
+                    backgroundImage: 'url(/heroes/main2.png)',
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'bottom',
@@ -197,7 +197,7 @@ export default function Heroes() {
                 <div
                   className="mx-auto flex h-[240px] items-center justify-end border-8 border-transparent xs:h-[320px] md:h-[400px] md:w-[75%]"
                   style={{
-                    backgroundImage: 'url(/heroes/charthumb3.png)',
+                    backgroundImage: 'url(/heroes/main3.png)',
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'bottom',
@@ -208,7 +208,7 @@ export default function Heroes() {
                 <div
                   className="mx-auto flex h-[240px] items-center justify-end border-8 border-transparent xs:h-[320px] md:h-[400px] md:w-[75%]"
                   style={{
-                    backgroundImage: 'url(/heroes/charthumb4.png)',
+                    backgroundImage: 'url(/heroes/main4.png)',
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'bottom',
@@ -219,7 +219,7 @@ export default function Heroes() {
                 <div
                   className="mx-auto flex h-[240px] items-center justify-end border-8 border-transparent xs:h-[320px] md:h-[400px] md:w-[75%]"
                   style={{
-                    backgroundImage: 'url(/heroes/charthumb5.png)',
+                    backgroundImage: 'url(/heroes/main5.png)',
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'bottom',
