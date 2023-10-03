@@ -314,7 +314,11 @@ export default function Heroes() {
                     e.stopPropagation() || instanceRef.current?.next()
                   }
                 >
-                  <img src="/heroes/arrow-right.svg" alt="Arrow right" />
+                  <img
+                    src="/heroes/arrow-right.svg"
+                    alt="Arrow right"
+                    className="ml-auto"
+                  />
                 </button>
               </div>
             )}
