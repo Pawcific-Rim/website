@@ -7,7 +7,7 @@ import { twMerge } from 'tailwind-merge'
 const SOCIALS_ICON_SIZE = 72
 
 const JoinCommunity = () => {
-  const [showSocials, setShowSocials] = useState(true)
+  const [showSocials, setShowSocials] = useState(false)
   const toggleSocials = () => setShowSocials(!showSocials)
   const [isMobile, setIsMobile] = useState(false)
 
