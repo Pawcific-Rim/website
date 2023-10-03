@@ -28,7 +28,7 @@ export default function Home() {
         <ReactFullpage
           scrollOverflow
           credits={{ enabled: false }}
-          scrollingSpeed={700}
+          scrollingSpeed={1000}
           render={() => {
             return (
               <ReactFullpage.Wrapper>
@@ -50,7 +50,7 @@ export default function Home() {
                 <div className="section">
                   <News />
                 </div>
-                <div className="section [&>div]:scrollbar-hide">
+                <div className="section">
                   <Footer />
                 </div>
               </ReactFullpage.Wrapper>
