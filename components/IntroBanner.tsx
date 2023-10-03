@@ -16,8 +16,8 @@ const IntroBanner = () => {
         fill
         style={{
           objectFit: 'cover',
-          objectPosition: '70%',
         }}
+        className="object-[85%] sm:object-[70%] md:object-[60%]"
         quality={80}
         priority
       />
@@ -25,20 +25,20 @@ const IntroBanner = () => {
         <div ref={ref} className="flex flex-col items-start">
           <h1
             className={twMerge(
-              'animate__animated mb-6 mt-16 w-full font-bold capitalize will-change-transform',
+              'animate__animated mt-16 w-full font-bold capitalize will-change-transform sm:mb-2 lg:mb-6',
               isInView && 'animate__fadeInDown'
             )}
           >
-            <p className="text-shadow-small text-left text-[32px] text-white sm:text-[40px] md:text-[60px]">
+            <p className="text-shadow-small text-right text-[32px] text-white sm:text-left sm:text-[40px] lg:text-[60px]">
               Joint The
             </p>
-            <p className="text-shadow-big text-left font-techno-race text-[56px] text-white sm:text-[80px] md:text-[136px]">
-              Furry Forces
+            <p className="text-shadow-big text-right font-techno-race text-[56px] text-white sm:text-left sm:text-[80px] lg:text-[136px]">
+              Furry Force
             </p>
           </h1>
           <div
             className={twMerge(
-              'animate__animated relative isolate mb-6 mt-2 will-change-transform',
+              'animate__animated relative isolate mb-6 ml-auto mt-2 will-change-transform sm:ml-0',
               isInView && 'animate__fadeInLeft'
             )}
           >
@@ -53,7 +53,7 @@ const IntroBanner = () => {
           </div>
           <div
             className={twMerge(
-              'animate__animated mt-8 will-change-transform',
+              'animate__animated ml-auto mt-3 will-change-transform sm:ml-0 sm:mt-8',
               isInView && 'animate__fadeInUp'
             )}
           >
