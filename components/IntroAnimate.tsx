@@ -4,8 +4,6 @@ import { twMerge } from 'tailwind-merge'
 import { useRef } from 'react'
 import Image from 'next/image'
 
-import Button from '@/components/Button'
-
 const Banner = () => {
   const elementRef = useRef(null)
   const isInView = useInView(elementRef, {
@@ -90,24 +88,28 @@ const Banner = () => {
             <p className="text-center font-techno-race">Mecha Army</p>
           </div>
         </div>
-        <div className="absolute bottom-6 left-1/2 mb-6 w-full -translate-x-1/2 transform px-6 sm:bottom-10 sm:mb-0 sm:px-10 lg:bottom-[72px] lg:max-w-[768px]">
+        <div className="absolute bottom-16 left-1/2 mb-8 w-full -translate-x-1/2 transform px-6 sm:px-10 md:bottom-10 md:mb-0 lg:bottom-[72px] lg:max-w-[768px]">
           <motion.div
             className={twMerge(
-              'animate__animated footer-content-mask container mx-auto overflow-hidden rounded-xl bg-black bg-opacity-50 p-6 will-change-transform',
-              isInView && 'animate__fadeInUp animate__delay-7s'
+              'animate__animated container mx-auto overflow-hidden rounded-xl bg-black bg-opacity-50 p-3 will-change-transform md:p-6',
+              isInView && 'animate__fadeInUp animate__delay-7s',
+              'rounded-xl border-4 border-solid border-[#FED73B]'
             )}
           >
-            <div className="flex flex-col items-center justify-between space-x-0 space-y-6 sm:flex-row sm:space-x-6 sm:space-y-0">
-              <p className="text-center text-white sm:text-left">
+            <div className="flex flex-col items-center justify-between space-x-0 space-y-3 sm:flex-row sm:space-x-6 sm:space-y-0">
+              <p className="text-center text-xs text-white sm:text-left sm:text-sm md:text-base">
                 Assemble over 100 Mecha to your Army, deadly and cute beats who
                 rule this galxy - each posessing powerful abilities and
                 synergies
               </p>
-              <Button>
-                <p className="px-6 py-2 text-base font-bold uppercase text-black">
-                  Get Them Now
-                </p>
-              </Button>
+              <button
+                className={twMerge(
+                  'px-4 py-3 md:px-6 md:py-5',
+                  'inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-[#FED73B]  text-xl font-semibold capitalize leading-none text-black shadow-md hover:bg-[#FFEE36]'
+                )}
+              >
+                Get Them Now
+              </button>
             </div>
           </motion.div>
         </div>

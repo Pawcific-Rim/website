@@ -29,20 +29,20 @@ const IntroBanner = () => {
               isInView && 'animate__fadeInDown'
             )}
           >
-            <p className="text-shadow-small text-left text-[32px] sm:text-[40px] md:text-[60px]">
+            <p className="text-shadow-small text-left text-[32px] text-white sm:text-[40px] md:text-[60px]">
               Joint The
             </p>
-            <p className="text-shadow-big text-left font-techno-race text-[56px] sm:text-[80px] md:text-[136px]">
+            <p className="text-shadow-big text-left font-techno-race text-[56px] text-white sm:text-[80px] md:text-[136px]">
               Furry Forces
             </p>
           </h1>
           <div
             className={twMerge(
-              'animate__animated relative isolate mb-6 will-change-transform',
+              'animate__animated relative isolate mb-6 mt-2 will-change-transform',
               isInView && 'animate__fadeInLeft'
             )}
           >
-            <p className="mx-4 text-lg capitalize leading-tight text-white sm:mx-[100px] sm:text-2xl lg:text-3xl">
+            <p className="mx-4 text-lg capitalize leading-tight text-white sm:mx-[100px] sm:text-2xl lg:mx-[120px] lg:text-3xl">
               Save the universe from Kaizu
             </p>
             <img

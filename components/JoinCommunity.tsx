@@ -28,7 +28,7 @@ const JoinCommunity = () => {
             'flex w-full items-center justify-between space-x-6 will-change-transform'
           )}
         >
-          <p className="whitespace-nowrap text-sm uppercase">
+          <p className="whitespace-nowrap text-sm uppercase text-white">
             Join Paw
             <br />
             Community
@@ -111,7 +111,7 @@ const JoinCommunity = () => {
             showSocials && 'rotate-180'
           )}
         />
-        <p className="whitespace-nowrap uppercase">
+        <p className="whitespace-nowrap uppercase text-white">
           Join Paw
           <br />
           Community
